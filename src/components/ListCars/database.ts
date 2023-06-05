@@ -1,0 +1,132 @@
+import maserati from "./../../assets/maserati.png"
+import porsche1 from "./../../assets/porsche1.png"
+import porsche2 from "./../../assets/porsche2.png"
+
+export const databaseCars = [
+    {
+        id: 1,
+        brand: "Maserati",
+        model: "Ghibli",
+        year: 2019,
+        fuel: "Gasolina",
+        km: 0,
+        color: "Preta",
+        fipePrice: 900000,
+        price: 1000000,
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+        image: maserati,
+        user: "Francisco"
+    },
+    {   
+        id: 2,
+        brand: "Porsche",
+        model: "718",
+        year: 2019,
+        fuel: "Gasolina",
+        km: 100,
+        color: "Preta",
+        fipePrice: 1200000,
+        price: 1300000,
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+        image: porsche1,
+        user: "Francisco"
+    },
+    {
+        id: 3,
+        brand: "Porsche",
+        model: "Taycan",
+        year: 2019,
+        fuel: "Gasolina",
+        km: 0,
+        color: "Branco",
+        fipePrice: 1500000,
+        price: 1600000,
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+        image: porsche2,
+        user: "Francisco"
+    },
+    {
+        id: 4,
+        brand: "Maserati",
+        model: "Ghibli",
+        year: 2019,
+        fuel: "Gasolina",
+        km: 0,
+        color: "Preta",
+        fipePrice: 900000,
+        price: 1000000,
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+        image: maserati,
+        user: "Francisco"
+    },
+    {
+        id: 5,
+        brand: "Porsche",
+        model: "718",
+        year: 2019,
+        fuel: "Gasolina",
+        km: 100,
+        color: "Preta",
+        fipePrice: 1200000,
+        price: 1300000,
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+        image: porsche1,
+        user: "Francisco"
+    },
+    {
+        id: 6,
+        brand: "Porsche",
+        model: "Taycan",
+        year: 2019,
+        fuel: "Gasolina",
+        km: 0,
+        color: "Branco",
+        fipePrice: 1500000,
+        price: 1600000,
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+        image: porsche2,
+        user: "Francisco"
+    },
+    {
+        id: 7,
+        brand: "Maserati",
+        model: "Ghibli",
+        year: 2019,
+        fuel: "Gasolina",
+        km: 0,
+        color: "Preta",
+        fipePrice: 900000,
+        price: 1000000,
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+        image: maserati,
+        user: "Francisco"
+    },
+    {
+        id: 8,
+        brand: "Porsche",
+        model: "718",
+        year: 2019,
+        fuel: "Gasolina",
+        km: 100,
+        color: "Preta",
+        fipePrice: 1200000,
+        price: 1300000,
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+        image: porsche1,
+        user: "Francisco"
+    },
+    {
+        id: 9,
+        brand: "Porsche",
+        model: "Taycan",
+        year: 2019,
+        fuel: "Gasolina",
+        km: 0,
+        color: "Branco",
+        fipePrice: 1500000,
+        price: 1600000,
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+        image: porsche2,
+        user: "Francisco"
+    }
+]
