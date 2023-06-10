@@ -25,8 +25,8 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-    font-family: 'Nunito', sans-serif;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
