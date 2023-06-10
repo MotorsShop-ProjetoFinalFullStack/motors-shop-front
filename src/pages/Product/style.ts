@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 export const Header = styled.header`
-    margin: auto;
+    margin: 0 auto;
     max-width: 1320px;
     width: 100%;
     height: 80px;
@@ -15,6 +15,7 @@ export const Header = styled.header`
             display: flex;
             align-items: center;
             gap: 20px; 
+            
         }
         .commentLetter {
             background-color: var(--green-3);
@@ -371,50 +372,7 @@ export const MainStyled = styled.main`
 
 
 
-    footer {
-        background-color: var(--gray-0);
-        margin: auto;
-        max-width: 1320px;
-        width: 100%;        
-        height: 90px;
-        
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 25px 60px 85px 60px;
-
-        img {
-            filter: grayscale(100%);
-            filter: invert(100%);
-        }
-
-        p {
-            color: var(--gray-10)
-        }
-
-        a {
-            
-            width: 53px;
-            height: 50px;
-            background-color: var(--gray-1);
-            
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 20px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            
-        }
-        .up{ 
-            
-            filter: invert(100%);
-            width: 25px;
-            
-        }
-    }
+   
 
 
 `

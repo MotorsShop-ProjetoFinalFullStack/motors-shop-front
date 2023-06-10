@@ -1,7 +1,8 @@
 import { Header, MainStyled } from "./style"
 import image from "../../assets/porsche2.png"
 import logo from "../../assets/logo.png"
-import up from "../../assets/up arrow.png"
+import { Footer } from "../../components/Footer"
+
 
 
 const ProductPage = () => {
@@ -122,11 +123,7 @@ const ProductPage = () => {
                         </div>
                     </section>
                 </div>
-                <footer>
-                    <img src={logo} alt="" />
-                    <p>@ 2023 - Todos os direitos reservados</p>
-                    <a href="main"><img className="up" src={up} alt="" /></a>
-                </footer>
+               <Footer/> 
             </MainStyled>
         </>
     )
