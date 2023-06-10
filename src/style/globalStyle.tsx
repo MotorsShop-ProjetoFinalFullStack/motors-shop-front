@@ -26,6 +26,7 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
     font-family: 'Nunito', sans-serif;
+    box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -49,6 +50,10 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+button{
+    cursor: pointer;
 }
 
  :root{
