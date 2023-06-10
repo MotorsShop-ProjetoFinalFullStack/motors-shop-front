@@ -1,0 +1,101 @@
+import { createContext, ReactNode, useEffect, useState } from "react"
+import { databaseCars } from "./../components/ListCars/database"
+
+interface CarProviderProps {
+    children: ReactNode
+}
+
+interface Car {
+    id: number,
+    brand: string,
+    model: string,
+    year: number,
+    fuel: string,
+    km: number,
+    color: string,
+    fipePrice: number,
+    price: number,
+    description: string,
+    image: string,
+    user: string
+}
+
+interface CarContextValues {
+    allCars: Car[],
+    carsSelected: Car[],
+    isFiltered: boolean,
+    filterByBrand: (value: string) => void,
+    filterByModel: (value: string) => void,
+    filterByColor: (value: string) => void,
+    filterByYear: (value: number) => void,
+    filterByFuel: (value: string) => void,
+    getAllCars: () => void
+}
+
+export const CarContext = createContext<CarContextValues>({} as CarContextValues)
+
+export const CarProvider = ({children}: CarProviderProps) => {
+
+    const [allCars, setAllCars] = useState<Car[]>([])
+    const [carsSelected, setCarsSelected] = useState<Car[]>([])
+
+    const [isFiltered, setIsFiltered] = useState<boolean>(false)
+
+    const filterByBrand = (value: string) => {
+        const filteredCars = allCars.filter((car) => {
+            return car.brand === value
+        })
+        setIsFiltered(true)
+        setCarsSelected(filteredCars)
+    }
+
+    const filterByModel = (value: string) => {
+        const filteredCars = allCars.filter((car) => {
+            return car.model === value
+        })
+        setIsFiltered(true)
+        setCarsSelected(filteredCars)
+    }
+
+    const filterByColor = (value: string) => {
+        const filteredCars = allCars.filter((car) => {
+            return car.color === value
+        })
+        setIsFiltered(true)
+        setCarsSelected(filteredCars)
+    }
+
+    const filterByYear = (value: number) => {
+        const filteredCars = allCars.filter((car) => {
+            return car.year === value
+        })
+        setIsFiltered(true)
+        setCarsSelected(filteredCars)
+    }
+
+    const filterByFuel = (value: string) => {
+        const filteredCars = allCars.filter((car) => {
+            return car.fuel === value
+        })
+        setIsFiltered(true)
+        setCarsSelected(filteredCars)
+    }
+
+    const getAllCars = () => {
+        setIsFiltered(false)
+    }
+
+    useEffect(() => {
+        const getCars = () => {
+            setAllCars(databaseCars)
+        }
+        getCars()
+    }, [])
+
+    return (
+        <CarContext.Provider value={{allCars, carsSelected, isFiltered, filterByBrand, filterByModel, filterByColor, filterByYear, filterByFuel, getAllCars}}>
+            {children}
+        </CarContext.Provider>
+    )
+
+}
