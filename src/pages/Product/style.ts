@@ -1,35 +1,40 @@
 import { styled } from "styled-components";
 
-export const Header = styled.header`
+export const HeaderStyled = styled.header`
     margin: 0 auto;
-    max-width: 1320px;
+    
     width: 100%;
     height: 80px;
     background-color: var(--gray-10);
-    padding: 0 20px;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    .divHead {
-            display: flex;
-            align-items: center;
-            gap: 20px; 
-            
-        }
-        .commentLetter {
-            background-color: var(--green-3);
-            color: #ffffff;
-            font-size: 14px;
-            border-radius: 50%;
-            padding: 10px;
-        }
+    img {
+        margin-left: 60px;
+    }
 
-        .commentName {
-            font-size: 16px;
-            color: var(--gray-2);
-            font-weight: bold;
-        }
+    .divHead {
+        margin-right: 60px;
+        display: flex;
+        align-items: center;
+        gap: 20px; 
+            
+    }
+    .commentLetter {
+        background-color: var(--green-3);
+        color: #ffffff;
+        font-size: 14px;
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+    .commentName {
+        font-size: 16px;
+        color: var(--gray-2);
+        font-weight: bold;
+    }
 
     
 
@@ -38,12 +43,16 @@ export const Header = styled.header`
 
 export const MainStyled = styled.main`
 
+    
+
     width: 100%;
     height: 100%;
     background-color: var(--gray-7);
     position: fixed;
     z-index: -3;   
     overflow: auto;
+
+    
 
     .divBg {
         background-color: var(--azul-1);
@@ -62,6 +71,11 @@ export const MainStyled = styled.main`
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+
+        @media(max-width: 1191px){
+            justify-content: center;
+        
+        }
         
     }
 
@@ -92,6 +106,10 @@ export const MainStyled = styled.main`
             width: 752px;
             height: 100%;
             overflow: auto;
+
+            @media(max-width:653px){
+                width: 100%;
+            }
         }
     }
 
@@ -120,6 +138,11 @@ export const MainStyled = styled.main`
                 color: var(--gray-1);
                 font-size: var(--title-3-font-size);
                 font-weight: bold;
+            }
+            @media(max-width: 490px){
+                flex-direction: column;
+                align-items: start;
+                gap: 35px;
             }
         }
 
@@ -338,12 +361,22 @@ export const MainStyled = styled.main`
             display: flex;
             justify-content: space-between;
 
+            @media(max-width: 490px){
+                flex-direction: column;
+                align-items:self-start;                
+                gap: 20px;
+            }
+
         }
 
         .divResponses {
             display: flex;
             align-items: center;
             gap: 15px;
+
+            @media(max-width: 426px){
+                flex-wrap: wrap;
+            }
             
             p {
                 background-color: var(--gray-7);

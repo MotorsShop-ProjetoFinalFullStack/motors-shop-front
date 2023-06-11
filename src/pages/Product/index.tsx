@@ -1,4 +1,4 @@
-import { Header, MainStyled } from "./style"
+import { HeaderStyled, MainStyled } from "./style"
 import image from "../../assets/porsche2.png"
 import logo from "../../assets/logo.png"
 import { Footer } from "../../components/Footer"
@@ -12,14 +12,15 @@ const ProductPage = () => {
     return (
         
         <>
-            <Header>
-                <img src={logo} alt="" />
-                <div className="divHead">
-                    <p className="commentLetter">SL</p>
-                    <p className="commentName">Samuel Leão</p>                                
-                </div>
-            </Header>
+            
             <MainStyled>
+                <HeaderStyled>
+                    <img src={logo} alt="" />
+                    <div className="divHead">
+                        <p className="commentLetter">SL</p>
+                        <p className="commentName">Samuel Leão</p>                                
+                    </div>
+                </HeaderStyled>
                 <div className="divBg"></div>            
                 <div className="divSections">
                     <section className="fistSection">
