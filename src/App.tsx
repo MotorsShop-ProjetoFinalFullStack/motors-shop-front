@@ -1,7 +1,7 @@
-import { ProductPage } from "./pages/Product";
+import { RoutesMain } from "./routes";
 
 function App() {
-  return   <ProductPage/>//<h1>Motors Shop</h1>;
+  return <RoutesMain />;
 }
 
 export default App;

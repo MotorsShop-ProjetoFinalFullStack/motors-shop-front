@@ -40,7 +40,7 @@ export const CardCarStyled = styled.li`
     }
 
     .divUser h4{
-        width: 15px;
+        width: 36px;
         text-align: center;
         border-radius: 50%;
         padding: 10px;
