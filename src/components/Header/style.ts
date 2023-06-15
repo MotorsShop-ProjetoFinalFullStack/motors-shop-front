@@ -20,13 +20,13 @@ export const HeaderStyled = styled.div`
   }
 
   h1 {
-    font-size: 35px;
+    font-size: 30px;
     font-weight: 600;
     margin-right: 8px;
   }
 
   h3 {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 600;
   }
 
@@ -67,5 +67,15 @@ export const HeaderStyled = styled.div`
     width: 27px;
     height: 27px;
     margin: 0px 6px 0px 20px;
+  }
+
+  @media (min-width: 370px) {
+    h1 {
+      font-size: 35px;
+    }
+
+    h3 {
+      font-size: 30px;
+    }
   }
 `;
