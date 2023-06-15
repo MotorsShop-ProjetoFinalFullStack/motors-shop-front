@@ -62,7 +62,7 @@ export const RegisterPage = () => {
       <Header type="register"></Header>
       <main>
         <form onSubmit={handleSubmit(submit)}>
-          <h2>Cadastrar</h2>
+          <h2>Cadastro</h2>
           <h3>Infomações pessoais</h3>
           <Input
             label="Nome"
@@ -112,7 +112,7 @@ export const RegisterPage = () => {
             type="text"
           />
           {errors.description && <p>{errors.description.message}</p>}
-          <h3>Infomações de endereço</h3>
+          <h3 className="h3Info">Infomações de endereço</h3>
           <Input
             label="CEP"
             nameError="cep"
@@ -122,22 +122,28 @@ export const RegisterPage = () => {
           />
           {errors.cep && <p>{errors.cep.message}</p>}
           <div className="InputDuplo">
-            <Input
-              label="Estado"
-              nameError="state"
-              placeholder="Digitar Estado"
-              register={register}
-              type="text"
-            />
-            {errors.state && <p>{errors.state.message}</p>}
-            <Input
-              label="Cidade"
-              nameError="city"
-              placeholder="Digitar cidade"
-              register={register}
-              type="text"
-            />
-            {errors.city && <p>{errors.city.message}</p>}
+            <div className="test">
+              <div className="flex-column">
+                <Input
+                  label="Estado"
+                  nameError="state"
+                  placeholder="Digitar Estado"
+                  register={register}
+                  type="text"
+                />
+                {errors.state && <p>{errors.state.message}</p>}
+              </div>
+              <div className="flex-column">
+                <Input
+                  label="Cidade"
+                  nameError="city"
+                  placeholder="Digitar cidade"
+                  register={register}
+                  type="text"
+                />
+                {errors.city && <p>{errors.city.message}</p>}
+              </div>
+            </div>
           </div>
           <Input
             label="Rua"
@@ -149,21 +155,25 @@ export const RegisterPage = () => {
           {errors.road && <p>{errors.road.message}</p>}
 
           <div className="InputDuplo">
-            <Input
-              label="Número"
-              nameError="number"
-              placeholder="Digitar número"
-              register={register}
-              type="text"
-            />
-            {errors.number && <p>{errors.number.message}</p>}
-            <Input
-              label="Complemento"
-              nameError="complement"
-              placeholder="Ex: apart 307"
-              register={register}
-              type="text"
-            />
+            <div className="test">
+              <div className="flex-column">
+                <Input
+                  label="Número"
+                  nameError="number"
+                  placeholder="Digitar número"
+                  register={register}
+                  type="text"
+                />
+                {errors.number && <p>{errors.number.message}</p>}
+              </div>
+              <Input
+                label="Complemento"
+                nameError="complement"
+                placeholder="Ex: apart 307"
+                register={register}
+                type="text"
+              />
+            </div>
           </div>
           <h3>Tipo de conta</h3>
           <div className="ButtonsAccontType">
@@ -175,6 +185,7 @@ export const RegisterPage = () => {
               Comprador
             </button>
             <button
+              id="buttonRight"
               type="button"
               onClick={() => handleButtonClick("Anunciante")}
               className={activeButton === "Anunciante" ? "active" : ""}
