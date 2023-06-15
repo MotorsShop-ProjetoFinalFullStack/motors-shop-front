@@ -2,13 +2,24 @@ import { styled } from "styled-components";
 
 export const RegisterStyled = styled.div`
   main {
-    margin-top: 3%;
-    margin-bottom: 3%;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
 
-    .DivForm {
+    form {
+      display: flex;
+      flex-direction: column;
+      /* align-items: center; */
+      background-color: var(--gray-10);
       margin: 0 auto;
-      background-color: red;
       width: 80%;
+      padding: 44px 48px;
+
+      /* .InputDuplo {
+        margin: 0 auto;
+        display: flex;
+        width: 40%;
+      } */
 
       h2 {
         padding-top: 5%;
@@ -33,72 +44,60 @@ export const RegisterStyled = styled.div`
         margin-left: 5%;
       }
 
-      form {
-        background-color: var(--gray-10);
-        margin: 0 auto;
+      .ButtonsAccontType {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 28px;
+        gap: 10px;
+      }
+
+      .ButtonsAccontType button {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 0px;
+        color: #0b0d0d;
+        background-color: var(--gray-4);
+        box-sizing: border-box;
+        height: 48px;
+        border: 1.5px solid var(--gray-4);
+        border-radius: 4px;
+      }
+
+      .ButtonsAccontType button.active {
+        color: #ffffff;
+        background-color: var(--azul-1);
+        border: 1.5px solid var(--azul-1);
+      }
+      .butFinal {
+        box-sizing: border-box;
         width: 80%;
+        height: 48px;
+        border: 1.5px solid var(--azul-1);
+        border-radius: 4px;
+        background: var(--azul-1);
 
-        /* .InputDuplo {
-          margin: 0 auto;
-          display: flex;
-          width: 40%;
-        } */
-
-        .ButtonsAccontType {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          padding: 12px 28px;
-          gap: 10px;
-        }
-
-        .ButtonsAccontType button {
-          font-family: "Inter";
-          font-style: normal;
-          font-weight: 600;
-          font-size: 16px;
-          line-height: 0px;
-          color: #0b0d0d;
-          background-color: var(--gray-4);
-          box-sizing: border-box;
-          height: 48px;
-          border: 1.5px solid var(--gray-4);
-          border-radius: 4px;
-        }
-
-        .ButtonsAccontType button.active {
-          color: #ffffff;
-          background-color: var(--azul-1);
-          border: 1.5px solid var(--azul-1);
-        }
-        .butFinal {
-          box-sizing: border-box;
-          width: 80%;
-          height: 48px;
-          border: 1.5px solid var(--azul-1);
-          border-radius: 4px;
-          background: var(--azul-1);
-
-          font-family: "Inter";
-          font-style: normal;
-          font-weight: 600;
-          font-size: 16px;
-          line-height: 0px;
-          color: #ffffff;
-        }
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 0px;
+        color: #ffffff;
       }
+    }
 
-      @media (min-width: 600px) {
-        /* padding: 44px, 48px, 44px, 48px; */
-        width: 441px;
-      }
-      @media (min-width: 601px) and (max-width: 1024px) {
-        width: 441px;
-      }
-      @media (min-width: 1025px) {
-        width: 441px;
-      }
+    @media (min-width: 600px) {
+      /* padding: 44px, 48px, 44px, 48px; */
+      width: 441px;
+    }
+    @media (min-width: 601px) and (max-width: 1024px) {
+      width: 441px;
+    }
+    @media (min-width: 1025px) {
+      width: 441px;
     }
   }
 `;
