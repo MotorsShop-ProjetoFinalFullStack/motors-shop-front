@@ -6,6 +6,7 @@ export const HeaderStyled = styled.div`
   justify-content: space-between;
   padding: 0px 25px;
   margin: 0 auto;
+  background-color: var(--gray-9);
   border-bottom: 2px solid var(--gray-6);
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   .flex {
