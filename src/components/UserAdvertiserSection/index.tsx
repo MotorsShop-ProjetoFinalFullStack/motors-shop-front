@@ -1,7 +1,10 @@
+import { useUserCar } from "../../hooks/useUserCar"
 import { UserAdvertiserSectionStyled } from "./styled"
 
 
 export const UserAdvertiserSection = () => {
+
+    const {setModalCreateAdvertiser} = useUserCar()
 
     return (
         <UserAdvertiserSectionStyled>
@@ -20,7 +23,7 @@ export const UserAdvertiserSection = () => {
                     </div>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
                 </div>
-                <button>Criar anúncio</button>
+                <button onClick={()=>{setModalCreateAdvertiser(true)}}>Criar anúncio</button>
             </div>
         </UserAdvertiserSectionStyled>
     )

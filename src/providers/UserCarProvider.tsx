@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from "react"
+import React, { createContext, ReactNode, useEffect, useState } from "react"
 import { databaseCars } from "./../components/ListCars/database"
 
 interface UserCarProviderProps {
@@ -21,7 +21,10 @@ interface Car {
 }
 
 interface UserCarContextValues {
-    allUserCars: Car[]
+    allUserCars: Car[],
+    modalCreateAdvertiser: boolean,
+    setModalCreateAdvertiser: React.Dispatch<React.SetStateAction<boolean>>
+
 }
 
 export const UserCarContext = createContext<UserCarContextValues>({} as UserCarContextValues)
@@ -29,6 +32,8 @@ export const UserCarContext = createContext<UserCarContextValues>({} as UserCarC
 export const UserCarProvider = ({children}: UserCarProviderProps) => {
 
     const [allUserCars, setAllUserCars] = useState<Car[]>([])
+
+    const [modalCreateAdvertiser, setModalCreateAdvertiser] = useState<boolean>(false)
 
     useEffect(() => {
 
@@ -41,7 +46,7 @@ export const UserCarProvider = ({children}: UserCarProviderProps) => {
     }, [])
 
     return (
-        <UserCarContext.Provider value={{allUserCars}}>
+        <UserCarContext.Provider value={{allUserCars, modalCreateAdvertiser, setModalCreateAdvertiser}}>
             {children}
         </UserCarContext.Provider>
     )

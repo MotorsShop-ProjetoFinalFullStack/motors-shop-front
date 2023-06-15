@@ -1,10 +1,14 @@
 import { Footer } from "../../components/Footer"
 import { Header } from "../../components/Header"
 import { ListUserCars } from "../../components/ListUserCars"
+import { ModalCreateAdvertiser } from "../../components/ModalCreateAdvertiser"
 import { UserAdvertiserSection } from "../../components/UserAdvertiserSection"
+import { useUserCar } from "../../hooks/useUserCar"
 import { UserAdvertiserStyled } from "./styled"
 
-export const UserAdvertiser = () => {   
+export const UserAdvertiser = () => {
+    
+    const {modalCreateAdvertiser} = useUserCar()
 
     return (
         <UserAdvertiserStyled>
@@ -12,6 +16,11 @@ export const UserAdvertiser = () => {
             <UserAdvertiserSection/>
             <ListUserCars/>
             <Footer/>
+            {modalCreateAdvertiser ? (
+                <ModalCreateAdvertiser/>
+            ):(
+                null
+            )}
         </UserAdvertiserStyled>
     )
 
