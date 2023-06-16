@@ -26,7 +26,6 @@ export const RegisterStyled = styled.div`
     form {
       display: flex;
       flex-direction: column;
-      /* align-items: center; */
       background-color: var(--gray-10);
       margin: 0 auto;
       width: 90%;
@@ -34,12 +33,7 @@ export const RegisterStyled = styled.div`
       padding: 44px 48px;
       border-radius: 4px;
 
-      /* .InputDuplo {
-        margin: 0 auto;
-        display: flex;
-        width: 40%;
-      } */
-
+    
       h2 {
         padding-top: 10px;
         margin-bottom: 32px;

@@ -28,6 +28,8 @@ export interface iRegisterData {
 }
 
 export const RegisterPage = () => {
+  const { userRegister }: any = useContext(Context);
+
   const [accountType, setAccountType] = useState("");
   const [activeButton, setActiveButton] = useState("");
 
@@ -50,7 +52,7 @@ export const RegisterPage = () => {
   function submit(data: iRegisterData) {
     data.accountType = accountType;
     delete data.confirmed_password;
-    // userRegister(data);
+    userRegister(data);
     reset();
   }
 
