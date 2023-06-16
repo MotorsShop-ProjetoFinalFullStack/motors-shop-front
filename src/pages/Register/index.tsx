@@ -6,7 +6,8 @@ import { Input } from "../../components/Input";
 import { registerSchema } from "../../schema/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { Context } from "../../context/context";
 
 export interface iRegisterData {
   name: string;

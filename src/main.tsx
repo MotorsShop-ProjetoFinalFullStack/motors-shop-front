@@ -3,12 +3,15 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { GlobalStyle } from "./style/globalStyle.tsx";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "../src/context/context.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-      <GlobalStyle />
-      <App />
+      <Provider>
+        <GlobalStyle />
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );
