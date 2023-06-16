@@ -2,6 +2,8 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../service";
+import { toast } from "react-toastify";
+import { iRegisterData } from "../pages/Register";
 
 //Criando nosso contexto
 export const Context = createContext({});
@@ -55,8 +57,24 @@ export const Provider = ({ children }: any) => {
     }
   }
 
+  async function userRegister(formData: iRegisterData) {
+    try {
+      await api.post("/users", formData);
+
+      toast.success("Cadastro realizado com sucesso!", {
+        autoClose: 3000,
+      });
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
+    } catch (error) {
+      toast.error("Oops, algo deu errado...");
+    }
+  }
+
   return (
-    <Context.Provider value={{ routeProtection, autoLogin }}>
+    <Context.Provider value={{ routeProtection, autoLogin, userRegister }}>
       {children}
     </Context.Provider>
   );
