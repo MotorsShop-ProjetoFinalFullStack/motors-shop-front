@@ -73,6 +73,20 @@ export const ModalCreateAdvertiserStyled = styled.div`
         justify-content: space-between;
     }
 
+    .divErrors{
+        padding: 3px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        width: 100%;
+    }
+
+    .divErrors p{
+        font-size: 14px;
+        color: red;
+        font-weight: 400;
+    }
+
     .divTextarea{
         display: flex;
         flex-direction: column;
