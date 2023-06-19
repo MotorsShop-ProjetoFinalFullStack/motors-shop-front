@@ -11,4 +11,10 @@ export const LoginStyled = styled.div`
   & > div {
     width: 100%;
   }
+
+  .messageError{
+    font-size: 14px;
+    color: red;
+    font-weight: 400;
+  }
 `;
