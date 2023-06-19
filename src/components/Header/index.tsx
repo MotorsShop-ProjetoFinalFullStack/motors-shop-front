@@ -14,7 +14,7 @@ export const Header = ({ type }: any) => {
           <button
             className="button-login"
             onClick={() => {
-              navigate("/");
+              navigate("/login");
             }}
           >
             Fazer Login
@@ -24,7 +24,7 @@ export const Header = ({ type }: any) => {
       )}
       {type == "login" && (
         <div className="div-button">
-          <button className="button-login">Fazer Login</button>
+          <button className="button-login" onClick={() => {navigate("/login")}}>Fazer Login</button>
           <button
             className="button-register"
             onClick={() => {
