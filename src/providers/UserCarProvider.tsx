@@ -1,6 +1,9 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react"
 import { databaseCars } from "./../components/ListCars/database"
 import { CreateAnnouncementData } from "../components/ModalCreateAdvertiser/validator"
+import { User } from "./CarProvider"
+import { api } from "../service"
+import { useAuth } from "../hooks/useAuth"
 
 interface UserCarProviderProps {
     children: ReactNode
@@ -10,7 +13,7 @@ interface Car {
     id: number,
     brand: string,
     model: string,
-    year: number,
+    year: string,
     fuel: string,
     km: number,
     color: string,
@@ -18,7 +21,7 @@ interface Car {
     price: number,
     description: string,
     image: string,
-    user: string
+    user: User
 }
 
 interface UserCarContextValues {
@@ -32,6 +35,8 @@ interface UserCarContextValues {
 export const UserCarContext = createContext<UserCarContextValues>({} as UserCarContextValues)
 
 export const UserCarProvider = ({children}: UserCarProviderProps) => {
+
+    const {login} = useAuth()
 
     const [allUserCars, setAllUserCars] = useState<Car[]>([])
 
@@ -55,13 +60,29 @@ export const UserCarProvider = ({children}: UserCarProviderProps) => {
 
     useEffect(() => {
 
-        const getAllUserCars = () => {
-            setAllUserCars(databaseCars)
+        const getAllUserCars = async () => {
+
+            const token: string | null = localStorage.getItem("@Token")
+
+            if(!token){
+                return null
+            }
+
+            try{
+                const requestUserAnnouncements = await api.get("/announcements/users", {headers: {authorization: `Bearer ${token}`}})
+
+                const userCars: Car[] = requestUserAnnouncements.data
+
+                setAllUserCars(userCars)
+
+            }catch(err){
+                console.log(err)
+            }
         }
 
         getAllUserCars()
 
-    }, [])
+    }, [login])
 
     return (
         <UserCarContext.Provider value={{allUserCars, modalCreateAdvertiser, setModalCreateAdvertiser, createAnnouncement}}>

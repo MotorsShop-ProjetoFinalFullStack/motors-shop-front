@@ -1,10 +1,11 @@
+import { User } from "../../providers/CarProvider"
 import { CardUserCarStyled } from "./styled"
 
 interface Car {
     id: number,
     brand: string,
     model: string,
-    year: number,
+    year: string,
     fuel: string,
     km: number,
     color: string,
@@ -12,7 +13,7 @@ interface Car {
     price: number,
     description: string,
     image: string,
-    user: string
+    user: User
 }
 
 interface CardUserCarProps {
@@ -20,6 +21,12 @@ interface CardUserCarProps {
 }
 
 export const CardUserCar = ({car}: CardUserCarProps) => {
+
+    const getYear = (year: string) => {
+        const date = new Date(year)
+
+        return date.getFullYear()
+    }
 
     return (
         <CardUserCarStyled>
@@ -32,7 +39,7 @@ export const CardUserCar = ({car}: CardUserCarProps) => {
                 <div className="divTagsPrice">
                     <div className="divTags">
                         <span>{car.km} KM</span>
-                        <span>{car.year}</span>
+                        <span>{getYear(car.year)}</span>
                     </div>
                     <h3>R$ {(car.price).toFixed(2)}</h3>
                 </div>
