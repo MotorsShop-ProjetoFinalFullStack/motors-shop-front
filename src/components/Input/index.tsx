@@ -21,7 +21,7 @@ interface iInputProps {
     | "city"
     | "street"
     | "complement"
-    | "typeUser"
+    // | "typeUser"
     | "confirmed_password";
 }
 

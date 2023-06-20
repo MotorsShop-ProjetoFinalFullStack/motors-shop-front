@@ -1,6 +1,5 @@
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
-
 import { RegisterStyled } from "./styled";
 import { Input } from "../../components/Input";
 import { registerSchema } from "../../schema/schema";
@@ -16,14 +15,14 @@ export interface iRegisterData {
   cpf: string;
   phone: string;
   birthdate: string;
-  description?: string;
+  description?: string | null;
   cep: string;
   state: string;
   city: string;
   street: string;
   number: string;
-  complement?: string;
-  typeUser: string;
+  complement?: string | null;
+  typeUser?: string | null;
   password: string;
   confirmed_password?: string;
 }
@@ -40,10 +39,8 @@ export const RegisterPage = () => {
     formState: { errors },
     reset,
   } = useForm<iRegisterData>({
-    mode: "onBlur",
-    // resolver: yupResolver<iRegisterData>(registerSchema),
+    resolver: yupResolver<iRegisterData>(registerSchema),
   });
-
   useEffect(() => {
     if (accountType) {
       register("typeUser");
@@ -52,6 +49,7 @@ export const RegisterPage = () => {
 
   function submit(formData: iRegisterData) {
     formData.typeUser = accountType;
+
     const address: any = {
       street: formData.street,
       number: formData.number,
@@ -72,7 +70,6 @@ export const RegisterPage = () => {
       address: address,
     };
     delete formData.confirmed_password;
-    console.log(user);
     userRegister(user);
     reset();
   }
@@ -217,14 +214,14 @@ export const RegisterPage = () => {
               Anunciante
             </button>
           </div>
-          {accountType && (
+          {/* {accountType && (
             <input
               type="text"
               name="typeUser"
-              defaultValue={accountType}
+              value={accountType}
               hidden
             />
-          )}
+          )} */}
           <Input
             label="Senha"
             nameError="password"
