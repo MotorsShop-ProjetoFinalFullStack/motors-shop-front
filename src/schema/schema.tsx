@@ -13,8 +13,8 @@ export const registerSchema = yup.object().shape({
     .string()
     .required("O CPF é obrigatório")
     .matches(/^\d{11}$/, "O CPF precisa ter 11 dígitos"),
-  telephone: yup.string().required("O telefone é obrigatório"),
-  dateOfBirth: yup.string().required("A data de nascimento é obrigatória"),
+  phone: yup.string().required("O telefone é obrigatório"),
+  birthdate: yup.string().required("A data de nascimento é obrigatória"),
   description: yup.string().optional(),
   cep: yup
     .string()
@@ -22,10 +22,10 @@ export const registerSchema = yup.object().shape({
     .matches(/^\d{8}$/, "O CEP precisa ter 8 dígitos"),
   state: yup.string().required("O estado é obrigatório"),
   city: yup.string().required("A cidade é obrigatória"),
-  road: yup.string().required("A rua é obrigatória"),
+  street: yup.string().required("A rua é obrigatória"),
   number: yup.string().required("O número é obrigatório"),
   complement: yup.string().optional(),
-  accountType: yup
+  typeUser: yup
     .string()
     .required("O tipo de conta é obrigatório")
     .oneOf(

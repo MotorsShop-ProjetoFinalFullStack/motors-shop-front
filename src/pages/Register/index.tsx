@@ -8,21 +8,22 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useState, useEffect, useContext } from "react";
 import { Context } from "../../context/context";
+import { ToastContainer } from "react-toastify";
 
 export interface iRegisterData {
   name: string;
   email: string;
   cpf: string;
-  telephone: string;
-  dateOfBirth: string;
+  phone: string;
+  birthdate: string;
   description?: string;
   cep: string;
   state: string;
   city: string;
-  road: string;
+  street: string;
   number: string;
   complement?: string;
-  accountType: string;
+  typeUser: string;
   password: string;
   confirmed_password?: string;
 }
@@ -40,19 +41,39 @@ export const RegisterPage = () => {
     reset,
   } = useForm<iRegisterData>({
     mode: "onBlur",
-    resolver: yupResolver<iRegisterData>(registerSchema),
+    // resolver: yupResolver<iRegisterData>(registerSchema),
   });
 
   useEffect(() => {
     if (accountType) {
-      register("accountType");
+      register("typeUser");
     }
   }, [accountType, register]);
 
-  function submit(data: iRegisterData) {
-    data.accountType = accountType;
-    delete data.confirmed_password;
-    userRegister(data);
+  function submit(formData: iRegisterData) {
+    formData.typeUser = accountType;
+    const address: any = {
+      street: formData.street,
+      number: formData.number,
+      complement: formData.complement,
+      cep: formData.cep,
+      city: formData.city,
+      state: formData.state,
+    };
+    const user: any = {
+      name: formData.name,
+      email: formData.email,
+      cpf: formData.cpf,
+      phone: formData.phone,
+      birthdate: formData.birthdate,
+      description: formData.description,
+      typeUser: formData.typeUser,
+      password: formData.password,
+      address: address,
+    };
+    delete formData.confirmed_password;
+    console.log(user);
+    userRegister(user);
     reset();
   }
 
@@ -93,20 +114,20 @@ export const RegisterPage = () => {
           {errors.cpf && <p>{errors.cpf.message}</p>}
           <Input
             label="Celular"
-            nameError="telephone"
+            nameError="phone"
             placeholder="(DDD) 90000-0000"
             register={register}
             type="text"
           />
-          {errors.telephone && <p>{errors.telephone.message}</p>}
+          {errors.phone && <p>{errors.phone.message}</p>}
           <Input
             label="Data de nascimento"
-            nameError="dateOfBirth"
+            nameError="birthdate"
             placeholder="00/00/00"
             register={register}
             type="text"
           />
-          {errors.dateOfBirth && <p>{errors.dateOfBirth.message}</p>}
+          {errors.birthdate && <p>{errors.birthdate.message}</p>}
           <Input
             label="Descrição"
             nameError="description"
@@ -150,12 +171,12 @@ export const RegisterPage = () => {
           </div>
           <Input
             label="Rua"
-            nameError="road"
+            nameError="street"
             placeholder="Digite o nome da rua"
             register={register}
             type="text"
           />
-          {errors.road && <p>{errors.road.message}</p>}
+          {errors.street && <p>{errors.street.message}</p>}
 
           <div className="InputDuplo">
             <div className="test">
@@ -197,7 +218,12 @@ export const RegisterPage = () => {
             </button>
           </div>
           {accountType && (
-            <input type="text" name="accountType" value={accountType} hidden />
+            <input
+              type="text"
+              name="typeUser"
+              defaultValue={accountType}
+              hidden
+            />
           )}
           <Input
             label="Senha"
@@ -223,6 +249,7 @@ export const RegisterPage = () => {
         </form>
       </main>
       <Footer />
+      <ToastContainer />
     </RegisterStyled>
   );
 };

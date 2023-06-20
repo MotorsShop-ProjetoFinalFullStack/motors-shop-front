@@ -13,15 +13,15 @@ interface iInputProps {
     | "email"
     | "password"
     | "cpf"
-    | "telephone"
-    | "dateOfBirth"
+    | "phone"
+    | "birthdate"
     | "description"
     | "cep"
     | "state"
     | "city"
-    | "road"
+    | "street"
     | "complement"
-    | "accountType"
+    | "typeUser"
     | "confirmed_password";
 }
 
