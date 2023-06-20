@@ -1,15 +1,28 @@
 import { createContext, ReactNode, useEffect, useState } from "react"
 import { databaseCars } from "./../components/ListCars/database"
+import { api } from "../service"
 
 interface CarProviderProps {
     children: ReactNode
 }
 
-interface Car {
+export interface User {
+    id: string,
+    name: string,
+    email: string,
+    cpf: string,
+    phone: string,
+    birthdate: string,
+    description: string | null,
+    typeUser: string,
+    createdAt: string
+}
+
+export interface Car {
     id: number,
     brand: string,
     model: string,
-    year: number,
+    year: string,
     fuel: string,
     km: number,
     color: string,
@@ -17,7 +30,7 @@ interface Car {
     price: number,
     description: string,
     image: string,
-    user: string
+    user: User
 }
 
 interface CarContextValues {
@@ -27,7 +40,7 @@ interface CarContextValues {
     filterByBrand: (value: string) => void,
     filterByModel: (value: string) => void,
     filterByColor: (value: string) => void,
-    filterByYear: (value: number) => void,
+    filterByYear: (value: string) => void,
     filterByFuel: (value: string) => void,
     getAllCars: () => void
 }
@@ -65,7 +78,7 @@ export const CarProvider = ({children}: CarProviderProps) => {
         setCarsSelected(filteredCars)
     }
 
-    const filterByYear = (value: number) => {
+    const filterByYear = (value: string) => {
         const filteredCars = allCars.filter((car) => {
             return car.year === value
         })
@@ -86,10 +99,20 @@ export const CarProvider = ({children}: CarProviderProps) => {
     }
 
     useEffect(() => {
-        const getCars = () => {
-            setAllCars(databaseCars)
+        const getCars = async () => {
+            try{
+                const request = await api.get("/announcements")
+
+                const requestData: Car[] = request.data
+
+                setAllCars(requestData)
+
+            }catch(err){
+                console.log(err)
+            }
         }
         getCars()
+    
     }, [])
 
     return (
