@@ -4,16 +4,21 @@ import { Header } from "../../components/Header";
 import { LoginStyled } from "./styled";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { schema } from "./validator";
+import { TLoginData, schema } from "./validator";
+import { useAuth } from "../../hooks/useAuth";
 
 export const LoginPage = () => {
-  const { register, handleSubmit } = useForm({
+
+  const {singIn, messageError} = useAuth()
+
+  const { register, handleSubmit } = useForm<TLoginData>({
     resolver: zodResolver(schema),
   });
+
   return (
     <LoginStyled>
       <Header className="header-login" type="login" />
-      <Form>
+      <Form onSubmit={handleSubmit(singIn)}>
         <div>
           <h2>Login</h2>
           <label htmlFor="email">Email</label>
@@ -21,8 +26,15 @@ export const LoginPage = () => {
           <label htmlFor="password">Password</label>
           <input type="password" id="password" {...register("password")} />
         </div>
+        {messageError === true ? (
+          <>
+            <p className="messageError">Email ou senha inválidos.</p>
+          </>
+        ):(
+          null
+        )}
         <p className="FPassword">Esqueci minha senha</p>
-        <button className="Entrar">Entrar</button>
+        <button className="Entrar" type="submit">Entrar</button>
         <span>Ainda não possui conta?</span>
         <button className="Cadastro">Cadastro</button>
       </Form>

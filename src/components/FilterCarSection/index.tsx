@@ -14,7 +14,7 @@ export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
     const [brands, setBrands] = useState<string[]>([])
     const [models, setModels] = useState<string[]>([])
     const [colors, setColors] = useState<string[]>([])
-    const [years, setYears] = useState<number[]>([])
+    const [years, setYears] = useState<string[]>([])
     const fuels: string[] = ["Gasolina", "Etanol", "Diesel", "Flex"]
 
     useEffect(() => {
@@ -77,7 +77,7 @@ export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
         }
 
         const getYears = () => {
-            const yearsArray: number[] = []
+            const yearsArray: string[] = []
 
             allCars.forEach((car) => {
                 let counter = 0
@@ -116,7 +116,7 @@ export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
         setFilterOpen(false)
     }
 
-    const filterYear = (year: number) => {
+    const filterYear = (year: string) => {
         filterByYear(year)
         setFilterOpen(false)
     }

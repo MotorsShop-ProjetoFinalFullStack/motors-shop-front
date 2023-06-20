@@ -14,6 +14,10 @@ export const CardUserCarStyled = styled.li`
         justify-content: center;
     }
 
+    .divImage img{
+        width: 262px;
+    }
+
     .divContent{
         width: 100%;
         display: flex;
