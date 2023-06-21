@@ -12,7 +12,7 @@ export const UserAdvertiser = () => {
 
     return (
         <UserAdvertiserStyled>
-            <Header/>
+            <Header type={"dashboard"}/>
             <UserAdvertiserSection/>
             <ListUserCars/>
             <Footer/>

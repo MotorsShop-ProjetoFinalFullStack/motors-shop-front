@@ -8,6 +8,14 @@ export const UserAdvertiserSection = () => {
     const {user} = useAuth()
     const {setModalCreateAdvertiser} = useUserCar()
 
+    const getNameUser = (name: string) => {
+        if(name){
+            return `${name[0]}${name[1]}`
+        }
+
+        return "??"
+    }
+
     return (
         <UserAdvertiserSectionStyled>
             <div className="divBlue">
@@ -18,7 +26,7 @@ export const UserAdvertiserSection = () => {
             </div>
             <div className="divUserContent">
                 <div className="divUserDetail">
-                    <h2>{user.name[0]}{user.name[1]}</h2>
+                    <h2>{getNameUser(user.name)}</h2>
                     <div>
                         <h3>{user.name}</h3>
                         <span>{user.typeUser}</span>
