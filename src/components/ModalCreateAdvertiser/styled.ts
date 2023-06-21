@@ -142,6 +142,57 @@ export const ModalCreateAdvertiserStyled = styled.div`
         color: #EDEAFD;
     }
 
+    .successButtonClose{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .successButtonClose h2{
+        color: var(--gray-1);
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .successButtonClose button{
+        background-color: var(--gray-8);
+        border: transparent;
+        font-size: 22px;
+        font-weight: 500;
+        color: var(--gray-3);
+    }
+
+    .successButtonClose button:hover{
+        color: var(--gray-1);
+    }
+
+    .contentSuccess{
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .contentSuccess h2{
+        color: var(--gray-1);
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .contentSuccess p{
+        color: var(--gray-1);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 28px;
+    }
+
+    .errorCreate{
+        font-size: 14px;
+        color: red;
+        font-weight: 400;
+    }
+
     @media(min-width: 750px) {
         display: flex;
         justify-content: center;

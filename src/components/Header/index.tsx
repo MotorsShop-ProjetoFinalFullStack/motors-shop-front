@@ -1,8 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { HeaderStyled } from "./style";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Header = ({ type }: any) => {
   const navigate = useNavigate();
+
+  const {user} = useAuth()
+
   return (
     <HeaderStyled>
       <div className="flex">
@@ -38,7 +42,7 @@ export const Header = ({ type }: any) => {
       {type == "dashboard" && (
         <div className="div-dashboard">
           <div className="img"></div>
-          <h4>Neymar Jr</h4>
+          <h4>{user.name}</h4>
         </div>
       )}
     </HeaderStyled>

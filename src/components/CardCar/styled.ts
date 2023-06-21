@@ -16,6 +16,8 @@ export const CardCarStyled = styled.li`
 
     .divImage img {
         width: 262px;
+        height: 152px;
+        object-fit: contain;
     }
 
     .divContent{
