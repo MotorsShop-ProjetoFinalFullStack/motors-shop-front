@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useState, useEffect, useContext } from "react";
 import { Context } from "../../context/context";
-import { ToastContainer } from "react-toastify";
+import { ModalPageRegister } from "../../components/ModalRegisterPage";
 
 export interface iRegisterData {
   name: string;
@@ -28,7 +28,8 @@ export interface iRegisterData {
 }
 
 export const RegisterPage = () => {
-  const { userRegister }: any = useContext(Context);
+  const { userRegister, modalRegisterPage, setModalRegisterPage }: any =
+    useContext(Context);
 
   const [accountType, setAccountType] = useState("");
   const [activeButton, setActiveButton] = useState("");
@@ -46,6 +47,7 @@ export const RegisterPage = () => {
       register("typeUser");
     }
   }, [accountType, register]);
+  console.log(errors);
 
   function submit(formData: iRegisterData) {
     formData.typeUser = accountType;
@@ -71,6 +73,7 @@ export const RegisterPage = () => {
     };
     delete formData.confirmed_password;
     userRegister(user);
+    setModalRegisterPage(true);
     reset();
   }
 
@@ -145,14 +148,37 @@ export const RegisterPage = () => {
           <div className="InputDuplo">
             <div className="test">
               <div className="flex-column">
-                <Input
-                  label="Estado"
-                  nameError="state"
-                  placeholder="Digitar Estado"
-                  register={register}
-                  type="text"
-                />
-                {errors.state && <p>{errors.state.message}</p>}
+                <p>Estado</p>
+                <select {...register("state")}>
+                  <option value="">Selecione um estado</option>
+                  <option value="AC">AC</option>
+                  <option value="AL">AL</option>
+                  <option value="AP">AP</option>
+                  <option value="AM">AM</option>
+                  <option value="BA">BA</option>
+                  <option value="CE">CE</option>
+                  <option value="DF">DF</option>
+                  <option value="ES">ES</option>
+                  <option value="GO">GO</option>
+                  <option value="MA">MA</option>
+                  <option value="MT">MT</option>
+                  <option value="MS">MS</option>
+                  <option value="MG">MG</option>
+                  <option value="PA">PA</option>
+                  <option value="PB">PB</option>
+                  <option value="PR">PR</option>
+                  <option value="PE">PE</option>
+                  <option value="PI">PI</option>
+                  <option value="RJ">RJ</option>
+                  <option value="RN">RN</option>
+                  <option value="RS">RS</option>
+                  <option value="RO">RO</option>
+                  <option value="RR">RR</option>
+                  <option value="SC">SC</option>
+                  <option value="SP">SP</option>
+                  <option value="SE">SE</option>
+                  <option value="TO">TO</option>
+                </select>
               </div>
               <div className="flex-column">
                 <Input
@@ -214,14 +240,7 @@ export const RegisterPage = () => {
               Anunciante
             </button>
           </div>
-          {/* {accountType && (
-            <input
-              type="text"
-              name="typeUser"
-              value={accountType}
-              hidden
-            />
-          )} */}
+
           <Input
             label="Senha"
             nameError="password"
@@ -244,9 +263,9 @@ export const RegisterPage = () => {
             Finalizar cadastro
           </button>
         </form>
+        {modalRegisterPage && <ModalPageRegister />}
       </main>
       <Footer />
-      <ToastContainer />
     </RegisterStyled>
   );
 };

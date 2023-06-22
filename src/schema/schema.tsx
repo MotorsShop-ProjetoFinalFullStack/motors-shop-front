@@ -31,7 +31,6 @@ export const registerSchema = yup.object().shape({
     .matches(/^\d{8}$/, "O CEP precisa ter 8 dígitos"),
 
   state: yup.string().required("O estado é obrigatório"),
-  // .matches(/^\d{2}$/, "Insira apenas a abreviação do estado"),
 
   city: yup.string().required("A cidade é obrigatória"),
 
