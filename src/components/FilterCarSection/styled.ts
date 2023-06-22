@@ -15,7 +15,7 @@ export const FilterCarSectionStyled = styled.section`
     }
 
     .firstDiv h2{
-        font-size: 28px;
+        font-size: 26px;
         font-weight: 600;
         color: var(--grey-1);
     }
@@ -33,7 +33,7 @@ export const FilterCarSectionStyled = styled.section`
         border: transparent;
         display: flex;
         align-items: flex-start;
-        font-size: var(--title-2-font-size);
+        font-size: 16px;
         color: var(--gray-3);
         width: fit-content;
     }
@@ -46,7 +46,7 @@ export const FilterCarSectionStyled = styled.section`
         display: none;
     }
 
-    @media(min-width: 450px) {
+    @media(min-width: 700px) {
         width: fit-content;
         margin: 100px 0;
         align-items: center;

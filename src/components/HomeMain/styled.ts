@@ -6,6 +6,7 @@ export const HomeMainStyled = styled.main`
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    padding-bottom: 50px;
     
     .filterSectionMobile{
         position: fixed;
@@ -75,7 +76,7 @@ export const HomeMainStyled = styled.main`
         display: none;
     }
 
-    @media(min-width: 450px) {
+    @media(min-width: 700px) {
         flex-direction: row;
         align-items: flex-start;
         justify-content: space-between;

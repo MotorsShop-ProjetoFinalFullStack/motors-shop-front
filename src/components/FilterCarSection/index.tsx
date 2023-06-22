@@ -14,7 +14,7 @@ export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
     const [brands, setBrands] = useState<string[]>([])
     const [models, setModels] = useState<string[]>([])
     const [colors, setColors] = useState<string[]>([])
-    const [years, setYears] = useState<string[]>([])
+    const [years, setYears] = useState<number[]>([])
     const fuels: string[] = ["Gasolina", "Etanol", "Diesel", "Flex"]
 
     useEffect(() => {
@@ -77,18 +77,20 @@ export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
         }
 
         const getYears = () => {
-            const yearsArray: string[] = []
+            const yearsArray: number[] = []
 
             allCars.forEach((car) => {
                 let counter = 0
 
+                const carYear = new Date(car.year).getFullYear()
+
                 yearsArray.forEach((year) => {
-                    if(year === car.year){
+                    if(year === carYear){
                         counter++
                     }
                 })
                 if(counter === 0){
-                    yearsArray.push(car.year)
+                    yearsArray.push(carYear)
                 }
             })
 
@@ -116,7 +118,7 @@ export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
         setFilterOpen(false)
     }
 
-    const filterYear = (year: string) => {
+    const filterYear = (year: number) => {
         filterByYear(year)
         setFilterOpen(false)
     }
@@ -131,7 +133,7 @@ export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
             <div className="firstDiv">
                 <h2>Marca</h2>
                 <div>
-                    {brands.map((brand) => {
+                    {brands.sort().map((brand) => {
                         return(<button key={brand} onClick={() => {filterBrand(brand)}}>{brand}</button>)
                     })}
                 </div>
@@ -139,7 +141,7 @@ export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
             <div className="firstDiv">
                 <h2>Modelo</h2>
                 <div>
-                    {models.map((model) => {
+                    {models.sort().map((model) => {
                         return(<button key={model} onClick={() => {filterModel(model)}}>{model}</button>)
                     })}
                 </div>
@@ -147,7 +149,7 @@ export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
             <div className="firstDiv">
                 <h2>Cor</h2>
                 <div>
-                    {colors.map((color) => {
+                    {colors.sort().map((color) => {
                         return(<button key={color} onClick={() => {filterColor(color)}}>{color}</button>)
                     })}
                 </div>
@@ -155,7 +157,7 @@ export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
             <div className="firstDiv">
                 <h2>Ano</h2>
                 <div>
-                    {years.map((year) => {
+                    {years.sort().map((year) => {
                         return (<button key={year} onClick={() => {filterYear(year)}}>{year}</button>)
                     })}
                 </div>
@@ -163,7 +165,7 @@ export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
             <div className="firstDiv">
                 <h2>Combustível</h2>
                 <div>
-                    {fuels.map((fuel) => {
+                    {fuels.sort().map((fuel) => {
                         return(<button key={fuel} onClick={() => {filterFuel(fuel)}}>{fuel}</button>)
                     })}
                 </div>

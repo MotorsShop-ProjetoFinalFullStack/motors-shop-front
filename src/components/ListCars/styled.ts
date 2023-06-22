@@ -9,7 +9,7 @@ export const ListCarsStyled = styled.ul`
     gap: 12px;
     overflow-x: auto;
 
-    @media(min-width: 450px) {
+    @media(min-width: 700px) {
         margin-bottom: 71px;
         flex-wrap: wrap;
         gap: 71px;
