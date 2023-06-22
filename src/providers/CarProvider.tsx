@@ -40,7 +40,7 @@ interface CarContextValues {
     filterByBrand: (value: string) => void,
     filterByModel: (value: string) => void,
     filterByColor: (value: string) => void,
-    filterByYear: (value: string) => void,
+    filterByYear: (value: number) => void,
     filterByFuel: (value: string) => void,
     getAllCars: () => void
 }
@@ -78,9 +78,10 @@ export const CarProvider = ({children}: CarProviderProps) => {
         setCarsSelected(filteredCars)
     }
 
-    const filterByYear = (value: string) => {
+    const filterByYear = (value: number) => {
         const filteredCars = allCars.filter((car) => {
-            return car.year === value
+            const carYear = new Date(car.year).getFullYear()
+            return carYear === value
         })
         setIsFiltered(true)
         setCarsSelected(filteredCars)
