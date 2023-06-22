@@ -5,33 +5,43 @@ export const registerSchema = yup.object().shape({
     .string()
     .required("O nome é obrigatório")
     .min(3, "O nome precisa ter no mínimo 3 caracteres"),
+
   email: yup
     .string()
     .required("O e-mail é obrigatório")
     .email("O email digitado é inválido"),
+
   cpf: yup
     .string()
     .required("O CPF é obrigatório")
     .matches(/^\d{11}$/, "O CPF precisa ter 11 dígitos"),
-  telephone: yup.string().required("O telefone é obrigatório"),
-  dateOfBirth: yup.string().required("A data de nascimento é obrigatória"),
-  description: yup.string().optional(),
+
+  phone: yup
+    .string()
+    .required("O telefone é obrigatório")
+    .matches(/^\d{11}$/, "O telefone precisa ter 11 dígitos"),
+
+  birthdate: yup.string().required("A data de nascimento é obrigatória"),
+
+  description: yup.string().nullable().optional(),
+
   cep: yup
     .string()
     .required("O CEP é obrigatório")
     .matches(/^\d{8}$/, "O CEP precisa ter 8 dígitos"),
+
   state: yup.string().required("O estado é obrigatório"),
+
   city: yup.string().required("A cidade é obrigatória"),
-  road: yup.string().required("A rua é obrigatória"),
+
+  street: yup.string().required("A rua é obrigatória"),
+
   number: yup.string().required("O número é obrigatório"),
-  complement: yup.string().optional(),
-  accountType: yup
-    .string()
-    .required("O tipo de conta é obrigatório")
-    .oneOf(
-      ["comprador", "vendedor"],
-      "O tipo de conta deve ser 'comprador' ou 'vendedor'"
-    ),
+
+  complement: yup.string().nullable().optional(),
+
+  typeUser: yup.string().nullable().optional(),
+
   password: yup
     .string()
     .required("A senha é obrigatória")
@@ -49,6 +59,7 @@ export const registerSchema = yup.object().shape({
       "A senha precisa ter pelo menos um caractere especial"
     )
     .min(8, "A senha precisa ter pelo menos oito caracteres"),
+
   confirmed_password: yup
     .string()
     .required("Confirme a senha")

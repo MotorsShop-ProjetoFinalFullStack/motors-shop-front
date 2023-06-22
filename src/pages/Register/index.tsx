@@ -1,6 +1,5 @@
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
-
 import { RegisterStyled } from "./styled";
 import { Input } from "../../components/Input";
 import { registerSchema } from "../../schema/schema";
@@ -8,27 +7,29 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useState, useEffect, useContext } from "react";
 import { Context } from "../../context/context";
+import { ModalPageRegister } from "../../components/ModalRegisterPage";
 
 export interface iRegisterData {
   name: string;
   email: string;
   cpf: string;
-  telephone: string;
-  dateOfBirth: string;
-  description?: string;
+  phone: string;
+  birthdate: string;
+  description?: string | null;
   cep: string;
   state: string;
   city: string;
-  road: string;
+  street: string;
   number: string;
-  complement?: string;
-  accountType: string;
+  complement?: string | null;
+  typeUser?: string | null;
   password: string;
   confirmed_password?: string;
 }
 
 export const RegisterPage = () => {
-  const { userRegister }: any = useContext(Context);
+  const { userRegister, modalRegisterPage, setModalRegisterPage }: any =
+    useContext(Context);
 
   const [accountType, setAccountType] = useState("");
   const [activeButton, setActiveButton] = useState("");
@@ -39,20 +40,40 @@ export const RegisterPage = () => {
     formState: { errors },
     reset,
   } = useForm<iRegisterData>({
-    mode: "onBlur",
     resolver: yupResolver<iRegisterData>(registerSchema),
   });
-
   useEffect(() => {
     if (accountType) {
-      register("accountType");
+      register("typeUser");
     }
   }, [accountType, register]);
+  console.log(errors);
 
-  function submit(data: iRegisterData) {
-    data.accountType = accountType;
-    delete data.confirmed_password;
-    userRegister(data);
+  function submit(formData: iRegisterData) {
+    formData.typeUser = accountType;
+
+    const address: any = {
+      street: formData.street,
+      number: formData.number,
+      complement: formData.complement,
+      cep: formData.cep,
+      city: formData.city,
+      state: formData.state,
+    };
+    const user: any = {
+      name: formData.name,
+      email: formData.email,
+      cpf: formData.cpf,
+      phone: formData.phone,
+      birthdate: formData.birthdate,
+      description: formData.description,
+      typeUser: formData.typeUser,
+      password: formData.password,
+      address: address,
+    };
+    delete formData.confirmed_password;
+    userRegister(user);
+    setModalRegisterPage(true);
     reset();
   }
 
@@ -93,20 +114,20 @@ export const RegisterPage = () => {
           {errors.cpf && <p>{errors.cpf.message}</p>}
           <Input
             label="Celular"
-            nameError="telephone"
+            nameError="phone"
             placeholder="(DDD) 90000-0000"
             register={register}
             type="text"
           />
-          {errors.telephone && <p>{errors.telephone.message}</p>}
+          {errors.phone && <p>{errors.phone.message}</p>}
           <Input
             label="Data de nascimento"
-            nameError="dateOfBirth"
+            nameError="birthdate"
             placeholder="00/00/00"
             register={register}
             type="text"
           />
-          {errors.dateOfBirth && <p>{errors.dateOfBirth.message}</p>}
+          {errors.birthdate && <p>{errors.birthdate.message}</p>}
           <Input
             label="Descrição"
             nameError="description"
@@ -127,14 +148,37 @@ export const RegisterPage = () => {
           <div className="InputDuplo">
             <div className="test">
               <div className="flex-column">
-                <Input
-                  label="Estado"
-                  nameError="state"
-                  placeholder="Digitar Estado"
-                  register={register}
-                  type="text"
-                />
-                {errors.state && <p>{errors.state.message}</p>}
+                <p>Estado</p>
+                <select {...register("state")}>
+                  <option value="">Selecione um estado</option>
+                  <option value="AC">AC</option>
+                  <option value="AL">AL</option>
+                  <option value="AP">AP</option>
+                  <option value="AM">AM</option>
+                  <option value="BA">BA</option>
+                  <option value="CE">CE</option>
+                  <option value="DF">DF</option>
+                  <option value="ES">ES</option>
+                  <option value="GO">GO</option>
+                  <option value="MA">MA</option>
+                  <option value="MT">MT</option>
+                  <option value="MS">MS</option>
+                  <option value="MG">MG</option>
+                  <option value="PA">PA</option>
+                  <option value="PB">PB</option>
+                  <option value="PR">PR</option>
+                  <option value="PE">PE</option>
+                  <option value="PI">PI</option>
+                  <option value="RJ">RJ</option>
+                  <option value="RN">RN</option>
+                  <option value="RS">RS</option>
+                  <option value="RO">RO</option>
+                  <option value="RR">RR</option>
+                  <option value="SC">SC</option>
+                  <option value="SP">SP</option>
+                  <option value="SE">SE</option>
+                  <option value="TO">TO</option>
+                </select>
               </div>
               <div className="flex-column">
                 <Input
@@ -150,12 +194,12 @@ export const RegisterPage = () => {
           </div>
           <Input
             label="Rua"
-            nameError="road"
+            nameError="street"
             placeholder="Digite o nome da rua"
             register={register}
             type="text"
           />
-          {errors.road && <p>{errors.road.message}</p>}
+          {errors.street && <p>{errors.street.message}</p>}
 
           <div className="InputDuplo">
             <div className="test">
@@ -196,9 +240,7 @@ export const RegisterPage = () => {
               Anunciante
             </button>
           </div>
-          {accountType && (
-            <input type="text" name="accountType" value={accountType} hidden />
-          )}
+
           <Input
             label="Senha"
             nameError="password"
@@ -221,6 +263,7 @@ export const RegisterPage = () => {
             Finalizar cadastro
           </button>
         </form>
+        {modalRegisterPage && <ModalPageRegister />}
       </main>
       <Footer />
     </RegisterStyled>

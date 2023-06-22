@@ -11,8 +11,22 @@ export const RegisterStyled = styled.div`
   .flex-column {
     flex-direction: column;
     p {
-      font-size: 12px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      color: var(--gray-1);
+    }
+    select {
+      width: 100%;
+      height: 48px;
+      box-sizing: border-box;
+      border: 1.5px solid var(--gray-3);
+      border-radius: 4px;
+      align-items: center;
+      padding: 0px 16px;
     }
   }
 
@@ -33,7 +47,6 @@ export const RegisterStyled = styled.div`
       padding: 44px 48px;
       border-radius: 4px;
 
-    
       h2 {
         padding-top: 10px;
         margin-bottom: 32px;
