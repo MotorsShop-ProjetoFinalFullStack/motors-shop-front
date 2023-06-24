@@ -13,7 +13,7 @@ export const UserAdvertiser = () => {
     return (
         <UserAdvertiserStyled>
             <Header type={"dashboard"}/>
-            <UserAdvertiserSection/>
+            <UserAdvertiserSection isPublic={false}/>
             <ListUserCars/>
             <Footer/>
             {modalCreateAdvertiser ? (

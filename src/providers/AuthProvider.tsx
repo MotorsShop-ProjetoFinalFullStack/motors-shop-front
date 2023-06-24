@@ -53,6 +53,7 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
 
     useEffect(() => {
         const loadUser = async () => {
+            
             const token: string | null = localStorage.getItem("@Token")
 
             if(!token){

@@ -57,6 +57,11 @@ export const CardCarStyled = styled.li`
     .divUser h5{
         color: var(--gray-2);
         font-size: 14px;
+        cursor: pointer;
+    }
+
+    .divUser h5:hover{
+        color: var(--azul-2);
     }
 
     .divTagsPrice{
