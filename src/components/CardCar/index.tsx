@@ -1,3 +1,4 @@
+import { usePublicUser } from "../../hooks/usePublicUser"
 import { Car } from "../../providers/CarProvider"
 import { CardCarStyled } from "./styled"
 
@@ -6,6 +7,8 @@ interface CardCarProps {
 }
 
 export const CardCar = ({car}: CardCarProps) => {
+
+    const {goPublicPage} = usePublicUser()
 
     const getYear = (year: string) => {
         const date = new Date(year)
@@ -23,7 +26,7 @@ export const CardCar = ({car}: CardCarProps) => {
                 <p>{car.description}</p>
                 <div className="divUser">
                     <h4>{car.user.name[0]}</h4>
-                    <h5>{car.user.name}</h5>
+                    <h5 onClick={() => {goPublicPage(car.user.id)}}>{car.user.name}</h5>
                 </div>
                 <div className="divTagsPrice">
                     <div className="divTags">

@@ -1,5 +1,6 @@
 import { AuthProvider } from "./providers/AuthProvider";
 import { CarProvider } from "./providers/CarProvider";
+import { PublicUserProvider } from "./providers/PublicUserProvider";
 import { UserCarProvider } from "./providers/UserCarProvider";
 import { RoutesMain } from "./routes";
 
@@ -8,7 +9,9 @@ function App() {
     <AuthProvider>
       <CarProvider>
         <UserCarProvider>
-          <RoutesMain/>
+          <PublicUserProvider>
+            <RoutesMain/>
+          </PublicUserProvider>
         </UserCarProvider>
       </CarProvider>
     </AuthProvider>
