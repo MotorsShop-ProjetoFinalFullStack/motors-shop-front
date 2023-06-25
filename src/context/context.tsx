@@ -10,6 +10,7 @@ export const Context = createContext({});
 //Função que vai englobar nosso contexto
 export const Provider = ({ children }: any) => {
   const [modalRegisterPage, setModalRegisterPage] = useState(false);
+  const [modalForgetPassword, setModalForgetPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -69,6 +70,17 @@ export const Provider = ({ children }: any) => {
       console.error(error);
     }
   }
+  async function forgetPassword(formData: iRegisterData) {
+    try {
+      await api.post("/users/resetPassword", formData);
+
+      setTimeout(() => {
+        setModalForgetPassword(false);
+      }, 5000);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <Context.Provider
@@ -78,6 +90,9 @@ export const Provider = ({ children }: any) => {
         userRegister,
         modalRegisterPage,
         setModalRegisterPage,
+        modalForgetPassword,
+        setModalForgetPassword,
+        forgetPassword,
       }}
     >
       {children}

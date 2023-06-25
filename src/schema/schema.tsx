@@ -65,3 +65,10 @@ export const registerSchema = yup.object().shape({
     .required("Confirme a senha")
     .oneOf([yup.ref("password")], "As senhas devem ser iguais."),
 });
+
+export const forgetPasswordSchema = yup.object().shape({
+  email: yup
+    .string()
+    .required("O e-mail é obrigatório")
+    .email("O email digitado é inválido"),
+});
