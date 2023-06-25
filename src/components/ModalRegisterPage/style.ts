@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-export const DivMoodal = styled.div`
+export const DivModal = styled.div`
   position: fixed;
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);

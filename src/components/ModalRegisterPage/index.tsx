@@ -16,7 +16,7 @@ export const ModalPageRegister = () => {
     navigate("/login");
   };
   return (
-    <S.DivMoodal>
+    <S.DivModal>
       <div className="divGlobal">
         <div className="divHeader">
           <p>Sucesso!</p>
@@ -42,6 +42,6 @@ export const ModalPageRegister = () => {
           Ir para o login
         </button>
       </div>
-    </S.DivMoodal>
+    </S.DivModal>
   );
 };

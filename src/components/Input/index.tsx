@@ -1,6 +1,7 @@
 import { UseFormRegister } from "react-hook-form";
 import * as S from "./style";
 import { iRegisterData } from "../../pages/Register";
+import { iForgetPasswordData } from "../ModalForgetPassword";
 
 interface iInputProps {
   label: string;
