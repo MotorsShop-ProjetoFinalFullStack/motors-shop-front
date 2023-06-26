@@ -72,3 +72,23 @@ export const forgetPasswordSchema = yup.object().shape({
     .required("O e-mail é obrigatório")
     .email("O email digitado é inválido"),
 });
+
+export const editAddress = yup.object().shape({
+  cep: yup
+    .string()
+    .nullable()
+    .optional()
+    .matches(/^\d{8}$/, "O CEP precisa ter 8 dígitos"),
+
+  state: yup.string().nullable().optional(),
+
+  city: yup.string().nullable().optional(),
+
+  street: yup.string().nullable().optional(),
+
+  number: yup.string().nullable().optional(),
+
+  complement: yup.string().nullable().optional(),
+
+  typeUser: yup.string().nullable().optional(),
+});

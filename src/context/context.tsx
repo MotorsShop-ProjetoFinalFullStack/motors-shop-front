@@ -11,6 +11,8 @@ export const Context = createContext({});
 export const Provider = ({ children }: any) => {
   const [modalRegisterPage, setModalRegisterPage] = useState(false);
   const [modalForgetPassword, setModalForgetPassword] = useState(false);
+  const [modalEditProfileState, setModalEditProfileState] = useState(false);
+  const [modalEditAddressState, setModalEditAddressState] = useState(false);
 
   const navigate = useNavigate();
 
@@ -93,6 +95,10 @@ export const Provider = ({ children }: any) => {
         modalForgetPassword,
         setModalForgetPassword,
         forgetPassword,
+        modalEditProfileState,
+        setModalEditProfileState,
+        modalEditAddressState,
+        setModalEditAddressState,
       }}
     >
       {children}
