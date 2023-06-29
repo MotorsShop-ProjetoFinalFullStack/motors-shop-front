@@ -6,6 +6,8 @@ import { useContext } from "react";
 import { Context } from "../../context/context";
 import { api } from "../../service";
 import { useAuth } from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const ModalEditProfile = () => {
   const { setModalEditProfileState, dataUser, setDataUser }: any =
@@ -19,8 +21,9 @@ export const ModalEditProfile = () => {
     mode: "onBlur",
     // resolver: yupResolver<any>(registerSchema),
   });
+  const navigate = useNavigate();
 
-  async function teste(data: any) {
+  async function updateProfile(data: any) {
     const body = {
       name: data.name ? data.name : dataUser.name,
       email: data.email ? data.email : dataUser.email,
@@ -40,10 +43,18 @@ export const ModalEditProfile = () => {
           authorization: `Bearer ${token}`,
         },
       });
-      console.log("Funcionou!");
       setDataUser(body);
     } catch {
-      console.log("asasa");
+      toast.error("Algo deu errado!");
+    }
+  }
+
+  async function deleteUser() {
+    try {
+      await api.delete(`/users/${dataUser.id}`);
+      navigate("/");
+    } catch {
+      console.log("error");
     }
   }
 
@@ -60,7 +71,7 @@ export const ModalEditProfile = () => {
           </button>
         </div>
         <h2 className="span-info">Informações pessoais</h2>
-        <form onSubmit={handleSubmit(teste)}>
+        <form onSubmit={handleSubmit(updateProfile)}>
           <Input
             label="Nome"
             nameError="name"
@@ -110,7 +121,9 @@ export const ModalEditProfile = () => {
             >
               Cancelar
             </h6>
-            <h6 className="button-delete">Excluir Perfil</h6>
+            <h6 className="button-delete" onClick={() => deleteUser()}>
+              Excluir Perfil
+            </h6>
             <button className="button-confirm">Salvar alterações</button>
           </div>
         </form>
