@@ -32,9 +32,7 @@ export const UserAdvertiserSection = ({
       {isPublic ? (
         <div className="divUserContent">
           <div className="divUserDetail">
-            <h2 onClick={() => setModalEditProfileState(true)}>
-              {getNameUser(publicUser.name)}
-            </h2>
+            <h2>{getNameUser(publicUser.name)}</h2>
             <div>
               <h3>{publicUser.name}</h3>
               <span>{publicUser.typeUser}</span>
@@ -45,7 +43,9 @@ export const UserAdvertiserSection = ({
       ) : (
         <div className="divUserContent">
           <div className="divUserDetail">
-            <h2>{getNameUser(user.name)}</h2>
+            <h2 onClick={() => setModalEditProfileState(true)}>
+              {getNameUser(user.name)}
+            </h2>
             <div>
               <h3>{user.name}</h3>
               <span>{user.typeUser}</span>

@@ -13,6 +13,7 @@ export const Provider = ({ children }: any) => {
   const [modalForgetPassword, setModalForgetPassword] = useState(false);
   const [modalEditProfileState, setModalEditProfileState] = useState(false);
   const [modalEditAddressState, setModalEditAddressState] = useState(false);
+  const [dataUser, setDataUser] = useState({});
 
   const navigate = useNavigate();
 
@@ -51,11 +52,13 @@ export const Provider = ({ children }: any) => {
 
     //Vai ver se o token é válido se for vai só capturar os dados
     try {
-      await api.get("/UrlDosDadosDoUsuario", {
+      const response = await api.get("/users/unique/users", {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
+      console.log(response);
+      setDataUser(response.data);
     } catch {
       navigate("/");
     }
@@ -99,6 +102,8 @@ export const Provider = ({ children }: any) => {
         setModalEditProfileState,
         modalEditAddressState,
         setModalEditAddressState,
+        dataUser,
+        setDataUser,
       }}
     >
       {children}
