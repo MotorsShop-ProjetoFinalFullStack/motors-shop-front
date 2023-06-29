@@ -32,6 +32,7 @@ export const ModalEditProfile = () => {
     };
     console.log(body);
     const token = localStorage.getItem("@Token");
+    window.location.reload();
 
     try {
       await api.patch(`/users/${dataUser.id}`, body, {

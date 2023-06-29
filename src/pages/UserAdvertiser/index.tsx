@@ -9,7 +9,8 @@ import { useUserCar } from "../../hooks/useUserCar";
 import { UserAdvertiserStyled } from "./styled";
 import { Context } from "../../context/context";
 import { ModalEditAddress } from "../../components/ModalEditAddress";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export const UserAdvertiser = () => {
   const { modalCreateAdvertiser } = useUserCar();
   const {
@@ -29,11 +30,11 @@ export const UserAdvertiser = () => {
       <Header type={"dashboard"} />
       <UserAdvertiserSection isPublic={false} />
       <ListUserCars />
-      <button onClick={() => setModalEditAddressState(true)}></button>
       <Footer />
       {modalCreateAdvertiser ? <ModalCreateAdvertiser /> : null}
       {modalEditProfileState && <ModalEditProfile />}
       {modalEditAddressState && <ModalEditAddress />}
+      <ToastContainer autoClose={2000} />
     </UserAdvertiserStyled>
   );
 };
