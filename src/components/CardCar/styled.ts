@@ -34,6 +34,14 @@ export const CardCarStyled = styled.li`
         font-weight: 600;
     }
 
+    .goPageAnnouncement{
+        cursor: pointer;
+    }
+
+    .goPageAnnouncement:hover{
+        color: var(--azul-1);
+    }
+
     p{
         color: var(--gray-2);
         font-size: 14px;

@@ -1,3 +1,4 @@
+import { AnnouncementPageProvider } from "./providers/AnnouncementPageProvider";
 import { AuthProvider } from "./providers/AuthProvider";
 import { CarProvider } from "./providers/CarProvider";
 import { PublicUserProvider } from "./providers/PublicUserProvider";
@@ -10,7 +11,9 @@ function App() {
       <CarProvider>
         <UserCarProvider>
           <PublicUserProvider>
-            <RoutesMain/>
+            <AnnouncementPageProvider>
+              <RoutesMain/>
+            </AnnouncementPageProvider>
           </PublicUserProvider>
         </UserCarProvider>
       </CarProvider>

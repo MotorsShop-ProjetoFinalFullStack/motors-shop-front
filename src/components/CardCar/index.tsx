@@ -1,3 +1,4 @@
+import { useAnnouncementPage } from "../../hooks/useAnnouncementPage"
 import { usePublicUser } from "../../hooks/usePublicUser"
 import { Car } from "../../providers/CarProvider"
 import { CardCarStyled } from "./styled"
@@ -9,6 +10,7 @@ interface CardCarProps {
 export const CardCar = ({car}: CardCarProps) => {
 
     const {goPublicPage} = usePublicUser()
+    const {goAnnouncementPage} = useAnnouncementPage()
 
     const getYear = (year: string) => {
         const date = new Date(year)
@@ -22,7 +24,7 @@ export const CardCar = ({car}: CardCarProps) => {
                 <img src={car.image} alt="Imagem carro" />
             </div>
             <div className="divContent">
-                <h3>{car.brand} - {car.model}</h3>
+                <h3 className="goPageAnnouncement" onClick={() => {goAnnouncementPage(car.id)}}>{car.brand} - {car.model}</h3>
                 <p>{car.description}</p>
                 <div className="divUser">
                     <h4>{car.user.name[0]}</h4>

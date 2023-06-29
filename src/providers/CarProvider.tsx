@@ -19,7 +19,7 @@ export interface User {
 }
 
 export interface Car {
-    id: number,
+    id: string,
     brand: string,
     model: string,
     year: string,
