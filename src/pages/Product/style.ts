@@ -1,49 +1,6 @@
 import { styled } from "styled-components";
 
-export const HeaderStyled = styled.header`
-    margin: 0 auto;
-    
-    width: 100%;
-    height: 80px;
-    background-color: var(--gray-10);
-    
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    img {
-        margin-left: 60px;
-    }
-
-    .divHead {
-        margin-right: 60px;
-        display: flex;
-        align-items: center;
-        gap: 20px; 
-            
-    }
-    .commentLetter {
-        background-color: var(--green-3);
-        color: #ffffff;
-        font-size: 14px;
-        border-radius: 50%;
-        padding: 10px;
-    }
-
-    .commentName {
-        font-size: 16px;
-        color: var(--gray-2);
-        font-weight: bold;
-    }
-
-    
-
-
-`
-
 export const MainStyled = styled.main`
-
-    
 
     width: 100%;
     height: 100%;
@@ -98,17 +55,24 @@ export const MainStyled = styled.main`
 
     .productImg {
         
-        height: 355px;        
+        height: 355px;  
+        width: 100%;
+        max-width: 752px;
         background-color: var(--gray-10);
         border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         img {
-            width: 752px;
-            height: 100%;
+            width: 700px;
+            height: 300px;
             overflow: auto;
+            object-fit: contain;
 
             @media(max-width:653px){
                 width: 100%;
+                padding: 0 20px;
             }
         }
     }
@@ -241,12 +205,14 @@ export const MainStyled = styled.main`
         gap: 25px;
 
         .nameLetters{
+            width: 104px;
             margin-top: 35px;
             font-size: 36px;
             color: #ffffff;
             background-color: var(--azul-1);
             border-radius: 50%;
-            padding: 34px 27px;            
+            padding: 34px 27px;  
+            text-align: center;
         }
         .nameComplete {
             font-size:20px;
