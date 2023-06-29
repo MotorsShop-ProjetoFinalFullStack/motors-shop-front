@@ -40,7 +40,7 @@ export const ModalEditAddress = () => {
         <form onSubmit={handleSubmit(test)}>
           <Input
             label="CEP"
-            nameError="state"
+            nameError="cep"
             placeholder="Digite seu nome aqui"
             register={register}
             type="text"

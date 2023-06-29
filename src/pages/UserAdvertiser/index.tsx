@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { ListUserCars } from "../../components/ListUserCars";
@@ -17,13 +17,19 @@ export const UserAdvertiser = () => {
     modalEditAddressState,
     setModalEditProfileState,
     setModalEditAddressState,
+    routeProtection,
   }: any = useContext(Context);
+
+  useEffect(() => {
+    routeProtection();
+  }, []);
 
   return (
     <UserAdvertiserStyled>
       <Header type={"dashboard"} />
       <UserAdvertiserSection isPublic={false} />
       <ListUserCars />
+      <button onClick={() => setModalEditAddressState(true)}></button>
       <Footer />
       {modalCreateAdvertiser ? <ModalCreateAdvertiser /> : null}
       {modalEditProfileState && <ModalEditProfile />}

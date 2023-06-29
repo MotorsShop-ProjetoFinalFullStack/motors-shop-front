@@ -4,9 +4,12 @@ import { ModalEditProfileStyled } from "./styled";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { Context } from "../../context/context";
+import { api } from "../../service";
+import { useAuth } from "../../hooks/useAuth";
 
 export const ModalEditProfile = () => {
-  const { setModalEditProfileState }: any = useContext(Context);
+  const { setModalEditProfileState, dataUser, setDataUser }: any =
+    useContext(Context);
   const {
     register,
     handleSubmit,
@@ -17,9 +20,31 @@ export const ModalEditProfile = () => {
     // resolver: yupResolver<any>(registerSchema),
   });
 
-  const teste = (data: any) => {
-    console.log(data);
-  };
+  async function teste(data: any) {
+    const body = {
+      name: data.name ? data.name : dataUser.name,
+      email: data.email ? data.email : dataUser.email,
+      cpf: data.cpf ? data.cpf : dataUser.cpf,
+      phone: data.phone ? data.phone : dataUser.phone,
+      birthdate: data.birthdate ? data.birthdate : dataUser.birthdate,
+      description: data.description ? data.description : dataUser.description,
+      typeUser: data.typeUser ? data.typeUser : dataUser.typeUser,
+    };
+    console.log(body);
+    const token = localStorage.getItem("@Token");
+
+    try {
+      await api.patch(`/users/${dataUser.id}`, body, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("Funcionou!");
+      setDataUser(body);
+    } catch {
+      console.log("asasa");
+    }
+  }
 
   return (
     <ModalEditProfileStyled>
@@ -38,42 +63,42 @@ export const ModalEditProfile = () => {
           <Input
             label="Nome"
             nameError="name"
-            placeholder="Digite seu nome aqui"
+            placeholder={dataUser.name}
             register={register}
             type="text"
           />
           <Input
             label="Email"
             nameError="email"
-            placeholder="Digite seu nome aqui"
+            placeholder={dataUser.email}
             register={register}
             type="text"
           />
           <Input
             label="CPF"
             nameError="cpf"
-            placeholder="Digite seu nome aqui"
+            placeholder={dataUser.cpf}
             register={register}
             type="text"
           />
           <Input
             label="Celular"
             nameError="phone"
-            placeholder="Digite seu nome aqui"
+            placeholder={dataUser.phone}
             register={register}
             type="text"
           />
           <Input
             label="Data de Nascimento"
             nameError="birthdate"
-            placeholder="Digite seu nome aqui"
+            placeholder={dataUser.birthdate}
             register={register}
             type="text"
           />
           <Input
             label="Descrição"
             nameError="description"
-            placeholder="Digite seu nome aqui"
+            placeholder={dataUser.description}
             register={register}
             type="text"
           />
