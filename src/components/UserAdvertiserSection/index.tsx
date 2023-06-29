@@ -15,7 +15,8 @@ export const UserAdvertiserSection = ({
   const { user } = useAuth();
   const { setModalCreateAdvertiser } = useUserCar();
   const { publicUser } = usePublicUser();
-  const { setModalEditProfileState }: any = useContext(Context);
+  const { setModalEditProfileState, setModalEditAddressState }: any =
+    useContext(Context);
 
   const getNameUser = (name: string) => {
     if (name) {
@@ -52,13 +53,18 @@ export const UserAdvertiserSection = ({
             </div>
             <p>{user.description}</p>
           </div>
-          <button
-            onClick={() => {
-              setModalCreateAdvertiser(true);
-            }}
-          >
-            Criar anúncio
-          </button>
+          <div className="div-button">
+            <button
+              onClick={() => {
+                setModalCreateAdvertiser(true);
+              }}
+            >
+              Criar anúncio
+            </button>
+            <button onClick={() => setModalEditAddressState(true)}>
+              Editar Endereço
+            </button>
+          </div>
         </div>
       )}
     </UserAdvertiserSectionStyled>

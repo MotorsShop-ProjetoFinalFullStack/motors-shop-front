@@ -95,4 +95,26 @@ export const ModalEditAddressStyled = styled.div`
       margin: 0;
     }
   }
+
+  .flex-column {
+    flex-direction: column;
+    p {
+      margin-bottom: 8px;
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      color: var(--gray-1);
+    }
+    select {
+      width: 100%;
+      height: 48px;
+      box-sizing: border-box;
+      border: 1.5px solid var(--gray-3);
+      border-radius: 4px;
+      align-items: center;
+      padding: 0px 16px;
+    }
+  }
 `;
