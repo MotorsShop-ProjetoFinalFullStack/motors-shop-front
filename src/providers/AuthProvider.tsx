@@ -53,8 +53,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const token: string = response.data.token;
       localStorage.setItem("@Token", token);
 
+      const responseUser = await api.get("/users/unique/users", {
+        headers: { authorization: `Bearer ${token}` },
+      });
+      const user: User = responseUser.data;
+      setUser(user);
+
       setMessageError(false);
       setLogin(true);
+
+      if (user.typeUser === "Anunciante") {
+        navigate("/userAdvertiser");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       setMessageError(true);
     }
@@ -75,12 +87,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         });
         const user: User = responseUser.data;
         setUser(user);
-
-        if (user.typeUser === "Anunciante") {
-          navigate("/userAdvertiser");
-        } else {
-          navigate("/");
-        }
+        setLogin(true)
+        
       } catch (err) {
         return null;
       } finally {
@@ -89,7 +97,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     };
 
     loadUser();
-  }, [login, dataUser]);
+  }, [messageError, dataUser]);
 
   return (
     <AuthContext.Provider value={{ singIn, login, messageError, user }}>

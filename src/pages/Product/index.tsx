@@ -4,6 +4,7 @@ import { Footer } from "../../components/Footer"
 import { Header } from "../../components/Header"
 import { useAnnouncementPage } from "../../hooks/useAnnouncementPage"
 import { useEffect } from "react"
+import { SectionComments } from "../../components/SectionComments"
 
 
 
@@ -58,7 +59,6 @@ const ProductPage = () => {
     return (
         
         <>
-            
             <MainStyled>
                 <Header type="login"/>
                 <div className="divBg"></div>            
@@ -102,62 +102,7 @@ const ProductPage = () => {
                             <button>Ver todos os anuncios</button>
                         </div>
                     </section>
-                    <section className="thirdSection">
-                        <ul className="coments">
-                            <h2>Comentários</h2>
-                            <li className="userComents">
-                                <div className="divHead">
-                                    <p className="commentLetter">JL</p>
-                                    <p className="commentName">Júlia Lima</p>
-                                    <p className="commentDate">há 3 dias</p>
-                                </div>
-                                <p className="commentText">Lorem Ipsum is simply dummy 
-                                text of the printing and typesetting industry. Lorem Ipsum has been the 
-                                industry's standard dummy text ever since the 1500s, when an unknown 
-                                printer took a galley of type and scrambled it to make a type specimen book.
-                                </p>
-                            </li>
-                            <li className="userComents">
-                                <div className="divHead">
-                                    <p className="commentLetter">JL</p>
-                                    <p className="commentName">Júlia Lima</p>
-                                    <p className="commentDate">há 3 dias</p>
-                                </div>
-                                <p className="commentText">Lorem Ipsum is simply dummy 
-                                text of the printing and typesetting industry. Lorem Ipsum has been the 
-                                industry's standard dummy text ever since the 1500s, when an unknown 
-                                printer took a galley of type and scrambled it to make a type specimen book.
-                                </p>
-                            </li>
-                            <li className="userComents">
-                                <div className="divHead">
-                                    <p className="commentLetter">JL</p>
-                                    <p className="commentName">Júlia Lima</p>
-                                    <p className="commentDate">há 3 dias</p>
-                                </div>
-                                <p className="commentText">Lorem Ipsum is simply dummy 
-                                text of the printing and typesetting industry. Lorem Ipsum has been the 
-                                industry's standard dummy text ever since the 1500s, when an unknown 
-                                printer took a galley of type and scrambled it to make a type specimen book.
-                                </p>
-                            </li>
-                        </ul>
-                        <div className="doComents">
-                            <div className="divHead">
-                                <p className="commentLetter">SL</p>
-                                <p className="commentName">Samuel Leão</p>                                
-                            </div>
-                            <textarea name="addComments" id="addComments" cols={10} rows={4}></textarea>
-                            <div className="divSubmit">
-                                <div className="divResponses">
-                                    <p>Gostei Muito</p>
-                                    <p>Incrível</p>
-                                    <p>Recomendarei para meus amigos!</p>
-                                </div>
-                                <button>Comentar</button>
-                            </div>
-                        </div>
-                    </section>
+                    <SectionComments/>
                 </div>
                <Footer/> 
             </MainStyled>
