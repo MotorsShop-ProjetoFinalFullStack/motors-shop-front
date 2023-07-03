@@ -2,8 +2,9 @@ import { ReactNode, createContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { api } from "../service"
 import { Car, User } from "./CarProvider"
+import { CreateCommentData } from "../components/FormComment/validator"
 
-interface Comment {
+export interface Comment {
     id: string,
     content: string,
     createdAt: string,
@@ -18,7 +19,9 @@ interface AnnouncementPageContextValues {
     goAnnouncementPage:  (id: string) => void,
     carAnnouncement: Car,
     comments: Comment[],
-    setAnnouncementId: React.Dispatch<React.SetStateAction<string | undefined>>
+    setAnnouncementId: React.Dispatch<React.SetStateAction<string | undefined>>,
+    messageNoComments: boolean,
+    toComment: (data: CreateCommentData) => void
 }
 
 export const AnnouncementPageContext = createContext<AnnouncementPageContextValues>({} as AnnouncementPageContextValues)
@@ -30,10 +33,27 @@ export const AnnouncementPageProvider = ({children}: AnnouncementPageProviderPro
     const [announcementId, setAnnouncementId] = useState<string | undefined>()
     const [carAnnouncement, setCarAnnouncement] = useState<Car>({} as Car)
     const [comments, setComments] = useState<Comment[]>([])
+    const [messageNoComments, setMessageNoComments] = useState<boolean>(false)
     
     const goAnnouncementPage = (id: string) => {
         setAnnouncementId(id)
         navigate("/announcement")
+    }
+
+    const toComment = async (data: CreateCommentData) => {
+        const token: string | null = localStorage.getItem("@Token")
+        const tokenIdAnnouncement: string | null = localStorage.getItem("@announcementId")
+
+        if(token && tokenIdAnnouncement){
+            try{
+                await api.post(`/comments/announcements/${announcementId}`, data, {headers: {authorization: `Bearer ${token}`}})
+
+                setAnnouncementId(tokenIdAnnouncement)
+                window.location.reload()
+            }catch(err){
+                console.log(err)
+            }
+        }
     }
 
     useEffect(() => {
@@ -47,7 +67,7 @@ export const AnnouncementPageProvider = ({children}: AnnouncementPageProviderPro
 
             if(id){
                 try{
-                    const request = await api.get(`/announcements/${announcementId}`)
+                    const request = await api.get(`/announcements/unique/${announcementId}`)
 
                     const carResponse: Car = request.data
 
@@ -66,10 +86,23 @@ export const AnnouncementPageProvider = ({children}: AnnouncementPageProviderPro
                     const request = await api.get(`/comments/announcements/${announcementId}`)
 
                     const commentsResponse: Comment[] = request.data
-                    
-                    setComments(commentsResponse)
+                    setMessageNoComments(false)
+                    setComments(commentsResponse.sort((a, b): number => {
+                        const timeA = a.createdAt
+                        const timeB = b.createdAt
+
+                        if(timeA < timeB){
+                            return 1
+                        }
+
+                        if(timeA > timeB){
+                            return -1
+                        }
+
+                        return 0
+                    }))
                 }catch(err){
-                    console.log(err)
+                    setMessageNoComments(true)
                 }
             }
         }
@@ -79,7 +112,7 @@ export const AnnouncementPageProvider = ({children}: AnnouncementPageProviderPro
     }, [announcementId])
 
     return (
-        <AnnouncementPageContext.Provider value={{goAnnouncementPage, carAnnouncement, comments, setAnnouncementId}}>
+        <AnnouncementPageContext.Provider value={{goAnnouncementPage, carAnnouncement, comments, setAnnouncementId, messageNoComments, toComment}}>
             {children}
         </AnnouncementPageContext.Provider>
     )
