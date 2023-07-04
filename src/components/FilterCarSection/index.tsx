@@ -9,7 +9,7 @@ interface FilterCarSectionProps{
 
 export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
 
-    const {allCars, filterByBrand, filterByModel, filterByColor, filterByYear, filterByFuel, isFiltered, getAllCars} = useCar()
+    const {allCars, filterByBrand, filterByModel, filterByColor, filterByYear, filterByFuel, isFiltered, getAllCars, filterByKm, filterByPrice} = useCar()
 
     const [brands, setBrands] = useState<string[]>([])
     const [models, setModels] = useState<string[]>([])
@@ -128,11 +128,31 @@ export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
         setFilterOpen(false)
     }
 
+    const filterKm = (type: string, e: any) => {
+        if(type === "min"){
+            const minKm: number = parseInt(e.target.value)
+            filterByKm(minKm, "min")
+        }else{
+            const maxKm: number = parseInt(e.target.value)
+            filterByKm(maxKm, "max")
+        }
+    }
+    
+    const filterPrice = (type: string, e: any) => {
+        if(type === "min"){
+            const minPrice: number = parseInt(e.target.value)
+            filterByPrice(minPrice, "min")
+        }else{
+            const maxPrice: number = parseInt(e.target.value)
+            filterByPrice(maxPrice, "max")
+        }
+    }
+
     return (
         <FilterCarSectionStyled>
             <div className="firstDiv">
                 <h2>Marca</h2>
-                <div>
+                <div className="divList">
                     {brands.sort().map((brand) => {
                         return(<button key={brand} onClick={() => {filterBrand(brand)}}>{brand}</button>)
                     })}
@@ -140,7 +160,7 @@ export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
             </div>
             <div className="firstDiv">
                 <h2>Modelo</h2>
-                <div>
+                <div className="divList">
                     {models.sort().map((model) => {
                         return(<button key={model} onClick={() => {filterModel(model)}}>{model}</button>)
                     })}
@@ -148,7 +168,7 @@ export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
             </div>
             <div className="firstDiv">
                 <h2>Cor</h2>
-                <div>
+                <div className="divList">
                     {colors.sort().map((color) => {
                         return(<button key={color} onClick={() => {filterColor(color)}}>{color}</button>)
                     })}
@@ -156,7 +176,7 @@ export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
             </div>
             <div className="firstDiv">
                 <h2>Ano</h2>
-                <div>
+                <div className="divList">
                     {years.sort().map((year) => {
                         return (<button key={year} onClick={() => {filterYear(year)}}>{year}</button>)
                     })}
@@ -164,10 +184,24 @@ export const FilterCarSection = ({setFilterOpen}: FilterCarSectionProps) => {
             </div>
             <div className="firstDiv">
                 <h2>Combustível</h2>
-                <div>
+                <div className="divList">
                     {fuels.sort().map((fuel) => {
                         return(<button key={fuel} onClick={() => {filterFuel(fuel)}}>{fuel}</button>)
                     })}
+                </div>
+            </div>
+            <div className="firstDiv">
+                <h2>Km</h2>
+                <div className="inputsFilter">
+                    <input placeholder="Mínimo" type="number" onChange={(e) => {filterKm("min", e)}}/>
+                    <input placeholder="Máximo" type="number" onChange={(e) => {filterKm("max", e)}}/>
+                </div>
+            </div>
+            <div className="firstDiv">
+                <h2>Preço</h2>
+                <div className="inputsFilter">
+                    <input placeholder="Mínimo" type="number" onChange={(e) => {filterPrice("min", e)}}/>
+                    <input placeholder="Máximo" type="number" onChange={(e) => {filterPrice("max", e)}}/>
                 </div>
             </div>
             {isFiltered ? (
