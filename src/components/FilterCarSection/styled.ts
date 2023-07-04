@@ -20,12 +20,37 @@ export const FilterCarSectionStyled = styled.section`
         color: var(--grey-1);
     }
 
-    .firstDiv div{
+    .divList{
         display: flex;
         flex-direction: column;
         gap: 5px;
         padding: 0 10px;
         width: 272px;
+    }
+
+    .inputsFilter{
+        display: flex;
+        gap: 10px;
+        padding: 0 10px;
+        width: 272px;
+        padding-bottom: 20px;
+    }
+
+    input{
+        width: 80px;
+        text-align: center;
+        padding: 11px 10px 10px 23px;
+        background-color: var(--gray-5);
+        border: 2px solid var(--gray-5);
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--gray-3);
+    }
+
+    input::placeholder{
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--gray-3);
     }
 
     .firstDiv button{

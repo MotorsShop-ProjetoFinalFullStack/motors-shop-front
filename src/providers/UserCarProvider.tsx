@@ -57,7 +57,7 @@ export const UserCarProvider = ({children}: UserCarProviderProps) => {
             km: parseInt(data.km),
             color: data.color,
             fipePrice: parseInt(data.fipePrice),
-            price: parseInt(data.fipePrice),
+            price: parseInt(data.price),
             description: data.description,
             image: data.image
         }

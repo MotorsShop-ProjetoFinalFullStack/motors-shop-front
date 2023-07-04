@@ -42,6 +42,8 @@ interface CarContextValues {
     filterByColor: (value: string) => void,
     filterByYear: (value: number) => void,
     filterByFuel: (value: string) => void,
+    filterByKm: (value: number, type: string) => void,
+    filterByPrice: (value: number, type: string) => void,
     getAllCars: () => void
 }
 
@@ -95,6 +97,38 @@ export const CarProvider = ({children}: CarProviderProps) => {
         setCarsSelected(filteredCars)
     }
 
+    const filterByKm = (value: number, type: string) => {
+        if(type === "min"){
+            const filteredCars = allCars.filter((car) => {
+                return car.km > value
+            })
+            setIsFiltered(true)
+            setCarsSelected(filteredCars)
+        }else{
+            const filteredCars = allCars.filter((car) => {
+                return car.km < value
+            })
+            setIsFiltered(true)
+            setCarsSelected(filteredCars)
+        }
+    }
+
+    const filterByPrice = (value: number, type: string) => {
+        if(type === "min"){
+            const filteredCars = allCars.filter((car) => {
+                return car.price > value
+            })
+            setIsFiltered(true)
+            setCarsSelected(filteredCars)
+        }else{
+            const filteredCars = allCars.filter((car) => {
+                return car.price < value
+            })
+            setIsFiltered(true)
+            setCarsSelected(filteredCars)
+        }
+    }
+
     const getAllCars = () => {
         setIsFiltered(false)
     }
@@ -117,7 +151,7 @@ export const CarProvider = ({children}: CarProviderProps) => {
     }, [])
 
     return (
-        <CarContext.Provider value={{allCars, carsSelected, isFiltered, filterByBrand, filterByModel, filterByColor, filterByYear, filterByFuel, getAllCars}}>
+        <CarContext.Provider value={{allCars, carsSelected, isFiltered, filterByBrand, filterByModel, filterByColor, filterByYear, filterByFuel, filterByKm, filterByPrice, getAllCars}}>
             {children}
         </CarContext.Provider>
     )
