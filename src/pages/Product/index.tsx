@@ -5,12 +5,22 @@ import { Header } from "../../components/Header"
 import { useAnnouncementPage } from "../../hooks/useAnnouncementPage"
 import { useEffect } from "react"
 import { SectionComments } from "../../components/SectionComments"
+import { useAuth } from "../../hooks/useAuth"
 
 
 
 const ProductPage = () => {
 
     const {carAnnouncement, setAnnouncementId} = useAnnouncementPage()
+    const {login} = useAuth()
+
+    const typeHeader = () => {
+        if(login){
+            return "dashboard"
+        }else{
+            return "login"
+        }
+    }
     
     const getYear = (year: string) => {
         const date = new Date(year)
@@ -60,7 +70,7 @@ const ProductPage = () => {
         
         <>
             <MainStyled>
-                <Header type="login"/>
+                <Header type={typeHeader()}/>
                 <div className="divBg"></div>            
                 <div className="divSections">
                     <section className="fistSection">

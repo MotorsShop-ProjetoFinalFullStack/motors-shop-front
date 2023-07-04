@@ -10,7 +10,7 @@ export const Header = ({ type }: any) => {
   return (
     <HeaderStyled>
       <div className="flex">
-        <h1>Motor</h1>
+        <h1>Motors</h1>
         <h3>shop</h3>
       </div>
       {type == "register" && (
