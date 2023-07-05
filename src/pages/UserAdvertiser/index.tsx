@@ -11,9 +11,8 @@ import { Context } from "../../context/context";
 import { ModalEditAddress } from "../../components/ModalEditAddress";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ModalEditAnnouncement } from "../../components/ModelEditAnnouncement";
-import { ModalDeleteAnnouncement } from "../../components/ModelaDeleteAnnouncement/Index";
 export const UserAdvertiser = () => {
+
   const { modalCreateAdvertiser } = useUserCar();
 
   const {

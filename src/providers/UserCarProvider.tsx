@@ -70,19 +70,19 @@ export const UserCarProvider = ({ children }: UserCarProviderProps) => {
 
   const [carSelected, setCarSelected] = useState<Car | null>(null);
 
-  const createAnnouncement = async (data: CreateAnnouncementData) => {
-    const dataToRegister = {
-      brand: data.brand,
-      model: data.model,
-      year: `${data.year}-02-02`,
-      fuel: data.fuel,
-      km: parseInt(data.km),
-      color: data.color,
-      fipePrice: parseInt(data.fipePrice),
-      price: parseInt(data.fipePrice),
-      description: data.description,
-      image: data.image,
-    };
+    const createAnnouncement = async (data: CreateAnnouncementData) => {
+        const dataToRegister = {
+            brand: data.brand,
+            model: data.model,
+            year: `${data.year}-02-02`,
+            fuel: data.fuel,
+            km: parseInt(data.km),
+            color: data.color,
+            fipePrice: parseInt(data.fipePrice),
+            price: parseInt(data.fipePrice),
+            description: data.description,
+            image: data.image
+        }
 
     const token: string | null = localStorage.getItem("@Token");
 

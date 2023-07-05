@@ -41,15 +41,15 @@ export interface Car {
 }
 
 interface CarContextValues {
-  allCars: Car[];
-  carsSelected: Car[];
-  isFiltered: boolean;
-  filterByBrand: (value: string) => void;
-  filterByModel: (value: string) => void;
-  filterByColor: (value: string) => void;
-  filterByYear: (value: number) => void;
-  filterByFuel: (value: string) => void;
-  getAllCars: () => void;
+    allCars: Car[],
+    carsSelected: Car[],
+    isFiltered: boolean,
+    filterByBrand: (value: string) => void,
+    filterByModel: (value: string) => void,
+    filterByColor: (value: string) => void,
+    filterByYear: (value: number) => void,
+    filterByFuel: (value: string) => void,
+    getAllCars: () => void
 }
 
 export const CarContext = createContext<CarContextValues>(
@@ -104,9 +104,9 @@ export const CarProvider = ({ children }: CarProviderProps) => {
     setCarsSelected(filteredCars);
   };
 
-  const getAllCars = () => {
-    setIsFiltered(false);
-  };
+    const getAllCars = () => {
+        setIsFiltered(false)
+    }
 
   useEffect(() => {
     const getCars = async () => {
@@ -115,32 +115,18 @@ export const CarProvider = ({ children }: CarProviderProps) => {
 
         const requestData: Car[] = request.data;
 
-        setAllCars(requestData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    if (!modalDeleteAnnouncement) {
-      getCars();
-    }
-    getCars();
-  }, [modalDeleteAnnouncement]);
+                setAllCars(requestData)
 
-  return (
-    <CarContext.Provider
-      value={{
-        allCars,
-        carsSelected,
-        isFiltered,
-        filterByBrand,
-        filterByModel,
-        filterByColor,
-        filterByYear,
-        filterByFuel,
-        getAllCars,
-      }}
-    >
-      {children}
-    </CarContext.Provider>
-  );
-};
+            }catch(err){
+                console.log(err)
+            }
+        }
+        getCars()
+    
+    }, [])
+
+    return (
+        <CarContext.Provider value={{allCars, carsSelected, isFiltered, filterByBrand, filterByModel, filterByColor, filterByYear, filterByFuel, getAllCars}}>
+            {children}
+        </CarContext.Provider>
+    )
