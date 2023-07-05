@@ -9,6 +9,7 @@ import { useAuth } from "../../hooks/useAuth"
 
 
 
+
 const ProductPage = () => {
 
     const {carAnnouncement, setAnnouncementId} = useAnnouncementPage()
@@ -66,6 +67,10 @@ const ProductPage = () => {
         refreshPage()
     }, [])
 
+    const handleBuyButton = () => {
+        window.open(`https://api.whatsapp.com/send?phone=+55+${carAnnouncement.user.phone}&text=Ol%C3%A1%2C%20venho%20por%20meio%20do%20seu%20an%C3%BAncio%20na%20MotorShop%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20ve%C3%ADculo`, '_blank')
+    }
+
     return (
         
         <>
@@ -86,7 +91,7 @@ const ProductPage = () => {
                                 </div>
                                 <p>R$ {getPrice(carAnnouncement.price)}</p>
                             </div>
-                            <button>Comprar</button>
+                            <button onClick={handleBuyButton}>Comprar</button>
                         </div>
                         <div className="productDescription">
                             <h2>Descrição</h2>
