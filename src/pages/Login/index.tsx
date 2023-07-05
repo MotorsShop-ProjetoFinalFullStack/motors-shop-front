@@ -6,13 +6,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { TLoginData, schema } from "./validator";
 import { useAuth } from "../../hooks/useAuth";
-import { Context } from "../../context/context";
-import { useContext } from "react";
-import { ModalForgetPassword } from "../../components/ModalForgetPassword";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
-  const { modalForgetPassword, setModalForgetPassword }: any =
-    useContext(Context);
+  const navigate = useNavigate();
 
   const { singIn, messageError } = useAuth();
 
@@ -20,8 +17,8 @@ export const LoginPage = () => {
     resolver: zodResolver(schema),
   });
 
-  const openModal = () => {
-    setModalForgetPassword(true);
+  const linkResetPassword = () => {
+    navigate("/resetPassword/");
   };
 
   return (
@@ -40,21 +37,20 @@ export const LoginPage = () => {
             <p className="messageError">Email ou senha inválidos.</p>
           </>
         ) : null}
-        <p
+        <a
           className="FPassword"
           onClick={() => {
-            openModal();
+            linkResetPassword();
           }}
         >
           Esqueci minha senha
-        </p>
+        </a>
         <button className="Entrar" type="submit">
           Entrar
         </button>
         <span>Ainda não possui conta?</span>
         <button className="Cadastro">Cadastro</button>
       </Form>
-      {modalForgetPassword && <ModalForgetPassword />}
       <Footer />
     </LoginStyled>
   );

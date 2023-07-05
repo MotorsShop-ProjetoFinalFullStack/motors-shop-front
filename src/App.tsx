@@ -12,14 +12,13 @@ function App() {
         <UserCarProvider>
           <PublicUserProvider>
             <AnnouncementPageProvider>
-              <RoutesMain/>
+              <RoutesMain />
             </AnnouncementPageProvider>
           </PublicUserProvider>
         </UserCarProvider>
       </CarProvider>
     </AuthProvider>
-  )
-
+  );
 }
 
 export default App;
