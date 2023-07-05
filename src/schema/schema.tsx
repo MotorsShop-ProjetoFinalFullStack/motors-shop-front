@@ -72,7 +72,7 @@ export const forgetPasswordSchema = yup.object().shape({
     .required("O e-mail é obrigatório")
     .email("O email digitado é inválido"),
 });
-
+export type TForgetData = z.infer<typeof forgetPasswordSchema>;
 export const editAddress: any = yup.object().shape({
   cep: yup.string().when("$isCepProvided", {
     is: true,

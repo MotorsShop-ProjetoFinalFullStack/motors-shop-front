@@ -47,7 +47,6 @@ export const RegisterPage = () => {
       register("typeUser");
     }
   }, [accountType, register]);
-  console.log(errors);
 
   function submit(formData: iRegisterData) {
     formData.typeUser = accountType;

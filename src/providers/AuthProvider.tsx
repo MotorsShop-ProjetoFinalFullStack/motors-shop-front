@@ -9,6 +9,7 @@ import { TLoginData } from "../pages/Login/validator";
 import { api } from "../service";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../context/context";
+import { TForgetData } from "../schema/schema";
 
 interface User {
   id: string;
@@ -31,6 +32,7 @@ interface AuthContextValues {
   login: boolean;
   messageError: boolean;
   user: User;
+  forgetPassword: (formData: TForgetData) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextValues>(
@@ -71,6 +73,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setMessageError(true);
     }
   };
+  async function forgetPassword(formData: TForgetData) {
+    try {
+      await api.post("/users/resetPassword", formData);
+
+      setTimeout(() => {
+        navigate("/");
+      }, 5000);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
     const loadUser = async () => {
@@ -87,8 +100,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         });
         const user: User = responseUser.data;
         setUser(user);
-        setLogin(true)
-        
+        setLogin(true);
       } catch (err) {
         return null;
       } finally {
@@ -100,7 +112,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, [messageError, dataUser]);
 
   return (
-    <AuthContext.Provider value={{ singIn, login, messageError, user }}>
+    <AuthContext.Provider
+      value={{ singIn, login, messageError, user, forgetPassword }}
+    >
       {children}
     </AuthContext.Provider>
   );
