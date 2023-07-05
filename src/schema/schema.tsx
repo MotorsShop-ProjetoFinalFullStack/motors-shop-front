@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { z } from "zod";
 
 export const registerSchema = yup.object().shape({
   name: yup
@@ -72,7 +73,34 @@ export const forgetPasswordSchema = yup.object().shape({
     .required("O e-mail é obrigatório")
     .email("O email digitado é inválido"),
 });
-export type TForgetData = z.infer<typeof forgetPasswordSchema>;
+export const forgetPasswordTokenSchema = yup.object().shape({
+  password: yup
+    .string()
+    .required("A senha é obrigatória")
+    .matches(
+      /(?=.*?[A-Z])/,
+      "A senha precisa ter pelo menos uma letra maiúscula"
+    )
+    .matches(
+      /(?=.*?[a-z])/,
+      "A senha precisa ter pelo menos uma letra minúscula"
+    )
+    .matches(/(?=.*?[0-9])/, "A senha precisa ter pelo menos um dígito")
+    .matches(
+      /(?=.*?[#?!@$%^&*-])/,
+      "A senha precisa ter pelo menos um caractere especial"
+    )
+    .min(8, "A senha precisa ter pelo menos oito caracteres"),
+
+  confirmed_password: yup
+    .string()
+    .required("Confirme a senha")
+    .oneOf([yup.ref("password")], "As senhas devem ser iguais."),
+});
+
+export type TForgetData = yup.InferType<typeof forgetPasswordSchema>;
+export type TForgetDataToken = yup.InferType<typeof forgetPasswordTokenSchema>;
+
 export const editAddress: any = yup.object().shape({
   cep: yup.string().when("$isCepProvided", {
     is: true,
