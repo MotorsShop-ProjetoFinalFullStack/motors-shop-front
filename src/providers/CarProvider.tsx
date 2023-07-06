@@ -34,15 +34,17 @@ export interface Car {
 }
 
 interface CarContextValues {
-  allCars: Car[];
-  carsSelected: Car[];
-  isFiltered: boolean;
-  filterByBrand: (value: string) => void;
-  filterByModel: (value: string) => void;
-  filterByColor: (value: string) => void;
-  filterByYear: (value: number) => void;
-  filterByFuel: (value: string) => void;
-  getAllCars: () => void;
+  allCars: Car[],
+  carsSelected: Car[],
+  isFiltered: boolean,
+  filterByBrand: (value: string) => void,
+  filterByModel: (value: string) => void,
+  filterByColor: (value: string) => void,
+  filterByYear: (value: number) => void,
+  filterByFuel: (value: string) => void,
+  filterByKm: (value: number, type: string) => void,
+  filterByPrice: (value: number, type: string) => void,
+  getAllCars: () => void
 }
 
 export const CarContext = createContext<CarContextValues>(
@@ -100,6 +102,38 @@ export const CarProvider = ({ children }: CarProviderProps) => {
     setIsFiltered(false);
   };
 
+  const filterByKm = (value: number, type: string) => {
+    if(type === "min"){
+        const filteredCars = allCars.filter((car) => {
+            return car.km > value
+        })
+        setIsFiltered(true)
+        setCarsSelected(filteredCars)
+    }else{
+        const filteredCars = allCars.filter((car) => {
+            return car.km < value
+        })
+        setIsFiltered(true)
+        setCarsSelected(filteredCars)
+    }
+  }
+
+  const filterByPrice = (value: number, type: string) => {
+    if(type === "min"){
+        const filteredCars = allCars.filter((car) => {
+            return car.price > value
+        })
+        setIsFiltered(true)
+        setCarsSelected(filteredCars)
+    }else{
+        const filteredCars = allCars.filter((car) => {
+            return car.price < value
+        })
+        setIsFiltered(true)
+        setCarsSelected(filteredCars)
+    }
+  }
+
   useEffect(() => {
     const getCars = async () => {
       try {
@@ -126,6 +160,8 @@ export const CarProvider = ({ children }: CarProviderProps) => {
         filterByColor,
         filterByYear,
         filterByFuel,
+        filterByKm,
+        filterByPrice,
         getAllCars,
       }}
     >
