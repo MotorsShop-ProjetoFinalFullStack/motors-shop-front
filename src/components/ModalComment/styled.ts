@@ -16,8 +16,8 @@ export const ModalCommentStyled = styled.div`
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 30px;
-        height: 60%;
+        justify-content: space-between;
+        height: 50%;
         overflow-y: auto;
     }
 
@@ -62,6 +62,7 @@ export const ModalCommentStyled = styled.div`
     textarea{
         width: 100%;
         height: 100px;
+        padding: 10px;
     }
 
     .divButtons{
@@ -79,6 +80,11 @@ export const ModalCommentStyled = styled.div`
         color: var(--gray-10);
         font-size: 16px;
         font-weight: 500;
+    }
+
+    .divButtons button:hover{
+        background-color: var(--gray-6);
+        color: var(--gray-1);
     }
 
     @media(min-width: 750px) {
