@@ -13,8 +13,12 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ModalEditAnnouncement } from "../../components/ModelEditAnnouncement";
 import { ModalDeleteAnnouncement } from "../../components/ModelaDeleteAnnouncement/Index";
+import { ModalDetailsAnnouncement } from "../../components/ModalDetailsAnnouncement";
 export const UserAdvertiser = () => {
-  const { modalCreateAdvertiser } = useUserCar();
+  const { 
+    modalCreateAdvertiser, 
+    modalDetail 
+  } = useUserCar();
 
   const {
     modalEditProfileState,
@@ -41,6 +45,7 @@ export const UserAdvertiser = () => {
       {modalEditAddressState && <ModalEditAddress />}
       {modalEditAnnouncement && <ModalEditAnnouncement />}
       {modalDeleteAnnouncement && <ModalDeleteAnnouncement />}
+      {modalDetail ? <ModalDetailsAnnouncement/> : null}
       <ToastContainer autoClose={2000} />
     </UserAdvertiserStyled>
   );

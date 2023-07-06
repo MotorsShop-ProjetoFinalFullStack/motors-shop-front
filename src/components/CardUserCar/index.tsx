@@ -2,9 +2,10 @@ import { useContext } from "react";
 import { User } from "../../providers/CarProvider";
 import { CardUserCarStyled } from "./styled";
 import { Context } from "../../context/context";
+import { useUserCar } from "../../hooks/useUserCar";
 
 interface Car {
-  id: number;
+  id: string;
   brand: string;
   model: string;
   year: string;
@@ -24,6 +25,7 @@ interface CardUserCarProps {
 
 export const CardUserCar = ({ car }: CardUserCarProps) => {
   const { setModalEditAnnouncement, setIdCar }: any = useContext(Context);
+  const {openModalDetail} = useUserCar()
 
   const getYear = (year: string) => {
     const date = new Date(year);
@@ -60,7 +62,7 @@ export const CardUserCar = ({ car }: CardUserCarProps) => {
           >
             Editar
           </button>
-          <button>Ver detalhes</button>
+          <button onClick={() => {openModalDetail(car.id)}}>Ver detalhes</button>
         </div>
       </div>
     </CardUserCarStyled>
