@@ -14,7 +14,7 @@ export const ModalEditAnnouncement = () => {
     setModalDeleteAnnouncement,
     idCar,
   }: any = useContext(Context);
-  
+
   const { patchAnnouncement, getUniqueAnnouncement } = useUserCar();
 
   const {
@@ -23,7 +23,7 @@ export const ModalEditAnnouncement = () => {
     formState: { errors },
     reset,
   } = useForm<EditAnnouncementData>({
-    // resolver: yupResolver(schemaEditAnnouncement),
+    // resolver: yupResolver<EditAnnouncementData>(schemaEditAnnouncement),
   });
   function submit(formData: EditAnnouncementData) {
     getUniqueAnnouncement(idCar);

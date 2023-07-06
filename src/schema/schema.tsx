@@ -1,5 +1,4 @@
 import * as yup from "yup";
-import { z } from "zod";
 
 export const registerSchema = yup.object().shape({
   name: yup
