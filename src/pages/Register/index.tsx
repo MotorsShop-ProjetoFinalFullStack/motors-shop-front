@@ -49,6 +49,7 @@ export const RegisterPage = () => {
   }, [accountType, register]);
 
   function submit(formData: iRegisterData) {
+    console.log(formData);
     formData.typeUser = accountType;
 
     const address: any = {
@@ -122,7 +123,7 @@ export const RegisterPage = () => {
           <Input
             label="Data de nascimento"
             nameError="birthdate"
-            placeholder="00/00/00"
+            placeholder="1999-01-01"
             register={register}
             type="text"
           />
