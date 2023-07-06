@@ -8,12 +8,9 @@ export const ListUserCarsStyled = styled.ul`
   overflow-x: auto;
 
   @media (min-width: 450px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 88%;
     margin: 0 auto;
-    max-width: 1350px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 0 20px;
-    padding-bottom: 50px;
   }
 `;
