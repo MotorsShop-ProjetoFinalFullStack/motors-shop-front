@@ -35,7 +35,6 @@ export const ModalEditProfile = () => {
     };
     console.log(body);
     const token = localStorage.getItem("@Token");
-    window.location.reload();
 
     try {
       await api.patch(`/users/${dataUser.id}`, body, {
@@ -44,6 +43,7 @@ export const ModalEditProfile = () => {
         },
       });
       setDataUser(body);
+      // window.location.reload();
     } catch {
       toast.error("Algo deu errado!");
     }
