@@ -5,6 +5,7 @@ export const CardCarStyled = styled.li`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin: 0 auto;
 
   .divImage {
     width: 100%;
