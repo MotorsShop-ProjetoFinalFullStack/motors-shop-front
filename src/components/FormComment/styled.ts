@@ -85,6 +85,11 @@ export const FormCommentStyled = styled.div`
         align-self: self-start;
     }
 
+    button:hover{
+        background-color: var(--gray-1);
+        color: var(--gray-8);
+    }
+
     .paragraphIsNotLogged{
         font-size: 18px;
         color: var(--gray-1);

@@ -7,6 +7,7 @@ import { useEffect } from "react"
 import { SectionComments } from "../../components/SectionComments"
 import { useAuth } from "../../hooks/useAuth"
 import { ModalComment } from "../../components/ModalComment"
+import { usePublicUser } from "../../hooks/usePublicUser"
 
 
 
@@ -15,6 +16,7 @@ const ProductPage = () => {
 
     const {carAnnouncement, setAnnouncementId, modalComment} = useAnnouncementPage()
     const {login} = useAuth()
+    const {goPublicPage} = usePublicUser()
 
     const typeHeader = () => {
         if(login){
@@ -115,7 +117,7 @@ const ProductPage = () => {
                             <p className="nameLetters">{getUser("nameCode")}</p>
                             <p className="nameComplete">{getUser("name")}</p>
                             <p className="userDescription">{getUser("description")}</p>
-                            <button>Ver todos os anuncios</button>
+                            <button onClick={() => {goPublicPage(carAnnouncement.user.id)}}>Ver todos os anuncios</button>
                         </div>
                     </section>
                     <SectionComments/>
