@@ -14,6 +14,8 @@ export const Provider = ({ children }: any) => {
   const [modalEditAddressState, setModalEditAddressState] = useState(false);
   const [modalEditAnnouncement, setModalEditAnnouncement] = useState(false);
   const [modalDeleteAnnouncement, setModalDeleteAnnouncement] = useState(false);
+  const [modalHeaderState, setModalHeaderState] = useState(false);
+
   const [idCar, setIdCar] = useState<number | undefined>(undefined);
 
   const [dataUser, setDataUser] = useState({});
@@ -95,6 +97,8 @@ export const Provider = ({ children }: any) => {
         setModalEditAnnouncement,
         modalDeleteAnnouncement,
         setModalDeleteAnnouncement,
+        modalHeaderState,
+        setModalHeaderState,
         dataUser,
         setDataUser,
         idCar,
