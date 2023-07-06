@@ -137,9 +137,14 @@ export const DivModal = styled.div`
     padding: 12px 20px;
     font-size: 16px;
     font-weight: 600;
-    background-color: #b0a6f0;
-    border: 1px solid #b0a6f0;
+    background-color: var(--gray-25);
+    border: 1px solid var(--gray-25);
     border-radius: 4px;
+    color: #edeafd;
+  }
+  .buttonSave:hover {
+    background-color: var(--purple-1);
+    border: 1px solid var(--purple-1);
     color: #edeafd;
   }
 
