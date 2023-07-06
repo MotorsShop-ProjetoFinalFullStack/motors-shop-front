@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { api } from "../service"
 import { Car, User } from "./CarProvider"
 import { CreateCommentData } from "../components/FormComment/validator"
+import { UpdateCommentData } from "../components/ModalComment/validator"
 
 export interface Comment {
     id: string,
@@ -25,7 +26,9 @@ interface AnnouncementPageContextValues {
     openModalComment: (type: string, id: string) => void,
     modalComment: boolean,
     isEdit: boolean,
-    closeModal: () => void
+    closeModal: () => void,
+    removeComment: () => void,
+    updateComment: (data: UpdateCommentData) => void
 }
 
 export const AnnouncementPageContext = createContext<AnnouncementPageContextValues>({} as AnnouncementPageContextValues)
@@ -76,6 +79,36 @@ export const AnnouncementPageProvider = ({children}: AnnouncementPageProviderPro
     const closeModal = () => {
         setIsEdit(false)
         setModalComment(false)
+    }
+
+    const updateComment = async (data: UpdateCommentData) => {
+        const token: string | null = localStorage.getItem("@Token")
+        console.log(data)
+        try{
+            await api.patch(`/comments/update/${commentId}`, data, {headers: {authorization: `Bearer ${token}`}})
+
+            setIsEdit(false)
+            setModalComment(false)
+
+            window.location.reload()
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+    const removeComment = async () => {
+
+        const token: string | null = localStorage.getItem("@Token")
+
+        try{
+            await api.delete(`/comments/delete/${commentId}`, {headers: { authorization: `Bearer ${token}`}})
+            setIsEdit(false)
+            setModalComment(false)
+
+            window.location.reload()
+        }catch(err){
+            console.log(err)
+        }
     }
 
     useEffect(() => {
@@ -134,7 +167,7 @@ export const AnnouncementPageProvider = ({children}: AnnouncementPageProviderPro
     }, [announcementId])
 
     return (
-        <AnnouncementPageContext.Provider value={{goAnnouncementPage, carAnnouncement, comments, setAnnouncementId, messageNoComments, toComment, openModalComment, modalComment, isEdit, closeModal}}>
+        <AnnouncementPageContext.Provider value={{goAnnouncementPage, carAnnouncement, comments, setAnnouncementId, messageNoComments, toComment, openModalComment, modalComment, isEdit, closeModal, removeComment, updateComment}}>
             {children}
         </AnnouncementPageContext.Provider>
     )
