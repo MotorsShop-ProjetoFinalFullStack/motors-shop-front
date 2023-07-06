@@ -47,6 +47,10 @@ interface UserCarContextValues {
     id: number
   ) => Promise<void>;
   getUniqueAnnouncement: (id: number) => Promise<any | undefined>;
+  modalDetail: boolean;
+  carDetailId: string;
+  openModalDetail: (id: string) => void;
+  closeModalDetail: () => void
 }
 
 export const UserCarContext = createContext<UserCarContextValues>(
@@ -68,7 +72,23 @@ export const UserCarProvider = ({ children }: UserCarProviderProps) => {
   const [createAdvertiserError, setCreateAdvertiserError] =
     useState<boolean>(false);
 
+  const [modalDetail, setModalDetail] = 
+    useState<boolean>(false)
+
+  const [carDetailId, setCarDetailId] = 
+    useState<string>("")
+
   const [carSelected, setCarSelected] = useState<Car | null>(null);
+
+  const openModalDetail = (id: string) => {
+    setModalDetail(true)
+    setCarDetailId(id)
+  }
+
+  const closeModalDetail = () => {
+    setModalDetail(false)
+    setCarDetailId("")
+  }
 
   const createAnnouncement = async (data: CreateAnnouncementData) => {
     const dataToRegister = {
@@ -232,6 +252,10 @@ export const UserCarProvider = ({ children }: UserCarProviderProps) => {
         setCreateAdvertiserError,
         patchAnnouncement,
         getUniqueAnnouncement,
+        modalDetail,
+        carDetailId,
+        openModalDetail,
+        closeModalDetail
       }}
     >
       {children}
