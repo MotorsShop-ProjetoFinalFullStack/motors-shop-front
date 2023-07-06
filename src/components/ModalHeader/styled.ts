@@ -26,6 +26,12 @@ export const ModalHeaderStyled = styled.div`
     justify-content: center;
   }
 
+  .logout {
+    background: none;
+    border: 3px solid var(--azul-2);
+    border-radius: 6px;
+  }
+
   @media (min-width: 500px) {
     display: none;
   }

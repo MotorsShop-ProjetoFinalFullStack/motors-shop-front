@@ -100,37 +100,3 @@ export const forgetPasswordTokenSchema = yup.object().shape({
 
 export type TForgetData = yup.InferType<typeof forgetPasswordSchema>;
 export type TForgetDataToken = yup.InferType<typeof forgetPasswordTokenSchema>;
-
-export const editAddress: any = yup.object().shape({
-  cep: yup.string().when("$isCepProvided", {
-    is: true,
-    then: yup
-      .string()
-      .required("O CEP é obrigatório")
-      .matches(/^\d{8}$/, "O CEP precisa ter 8 dígitos"),
-  }),
-
-  state: yup.string().when("$isStateProvided", {
-    is: true,
-    then: yup.string().required("O estado é obrigatório"),
-  }),
-
-  city: yup.string().when("$isCityProvided", {
-    is: true,
-    then: yup.string().required("A cidade é obrigatória"),
-  }),
-
-  street: yup.string().when("$isStreetProvided", {
-    is: true,
-    then: yup.string().required("A rua é obrigatória"),
-  }),
-
-  number: yup.string().when("$isNumberProvided", {
-    is: true,
-    then: yup.string().required("O número é obrigatório"),
-  }),
-
-  complement: yup.string().nullable().optional(),
-
-  typeUser: yup.string().nullable().optional(),
-});

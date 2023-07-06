@@ -3,8 +3,6 @@ import { ModalEditAddressStyled } from "./styled";
 import { Context } from "../../context/context";
 import { Input } from "../Input";
 import { useForm } from "react-hook-form";
-import { editAddress } from "../../schema/schema";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../service";
 import { toast } from "react-toastify";
 
@@ -12,14 +10,8 @@ export const ModalEditAddress = () => {
   const { modalEditAddressState, setModalEditAddressState, dataUser }: any =
     useContext(Context);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<any>({
+  const { register, handleSubmit } = useForm<any>({
     mode: "onBlur",
-    resolver: yupResolver<any>(editAddress),
   });
 
   async function updatedAddress(data: any) {
