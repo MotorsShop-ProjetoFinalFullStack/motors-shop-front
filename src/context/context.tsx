@@ -97,6 +97,8 @@ export const Provider = ({ children }: any) => {
         setModalDeleteAnnouncement,
         dataUser,
         setDataUser,
+        idCar,
+        setIdCar,
       }}
     >
       {children}
