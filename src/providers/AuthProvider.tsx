@@ -9,8 +9,7 @@ import { TLoginData } from "../pages/Login/validator";
 import { api } from "../service";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../context/context";
-import { TForgetData, TForgetDataToken } from "../schema/schema";
-import { string } from "zod";
+import { TForgetData } from "../schema/schema";
 
 interface User {
   id: string;
@@ -34,7 +33,7 @@ interface AuthContextValues {
   messageError: boolean;
   user: User;
   forgetPassword: (formData: TForgetData) => Promise<void>;
-  forgetPasswordToken: (formData: TForgetDataToken) => Promise<void>;
+  forgetPasswordToken: (formData: object) => Promise<void>;
   setTokenPassword: (token: string) => void;
 }
 
@@ -88,9 +87,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       console.error(error);
     }
   }
-  async function forgetPasswordToken(formData: TForgetDataToken) {
+  async function forgetPasswordToken(formData: object) {
+    console.log(formData);
     try {
-      await api.post(`/users/resetPassword${tokenPassword}`, formData);
+      await api.patch(`/users/resetPassword/${tokenPassword}`, formData);
 
       setTimeout(() => {
         navigate("/");

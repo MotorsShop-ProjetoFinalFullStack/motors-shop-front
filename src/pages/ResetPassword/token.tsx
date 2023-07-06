@@ -13,7 +13,7 @@ export const ResetPassword = () => {
 
   const { token } = useParams();
   setTokenPassword(token!);
-  console.log(token);
+  // console.log(token);
 
   const {
     register,
@@ -25,7 +25,11 @@ export const ResetPassword = () => {
   });
   function submit(formData: TForgetDataToken) {
     if (formData) {
-      forgetPasswordToken(formData);
+      console.log(formData);
+      const passwordToken = {
+        password: formData.confirmed_password,
+      };
+      forgetPasswordToken(passwordToken);
       reset();
     }
   }
