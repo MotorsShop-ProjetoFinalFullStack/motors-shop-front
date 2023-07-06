@@ -13,6 +13,7 @@ export const Provider = ({ children }: any) => {
   const [modalForgetPassword, setModalForgetPassword] = useState(false);
   const [modalEditProfileState, setModalEditProfileState] = useState(false);
   const [modalEditAddressState, setModalEditAddressState] = useState(false);
+  const [modalHeaderState, setModalHeaderState] = useState(false);
   const [dataUser, setDataUser] = useState({});
 
   const navigate = useNavigate();
@@ -104,6 +105,8 @@ export const Provider = ({ children }: any) => {
         setModalEditAddressState,
         dataUser,
         setDataUser,
+        modalHeaderState,
+        setModalHeaderState,
       }}
     >
       {children}
