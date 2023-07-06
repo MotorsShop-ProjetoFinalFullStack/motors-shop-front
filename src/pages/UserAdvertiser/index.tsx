@@ -11,7 +11,6 @@ import { Context } from "../../context/context";
 import { ModalEditAddress } from "../../components/ModalEditAddress";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 export const UserAdvertiser = () => {
 
   const { modalCreateAdvertiser } = useUserCar();
@@ -19,6 +18,8 @@ export const UserAdvertiser = () => {
   const {
     modalEditProfileState,
     modalEditAddressState,
+    modalEditAnnouncement,
+    modalDeleteAnnouncement,
     setModalEditProfileState,
     setModalEditAddressState,
     routeProtection,
@@ -37,6 +38,8 @@ export const UserAdvertiser = () => {
       {modalCreateAdvertiser ? <ModalCreateAdvertiser /> : null}
       {modalEditProfileState && <ModalEditProfile />}
       {modalEditAddressState && <ModalEditAddress />}
+      {modalEditAnnouncement && <ModalEditAnnouncement />}
+      {modalDeleteAnnouncement && <ModalDeleteAnnouncement />}
       <ToastContainer autoClose={2000} />
     </UserAdvertiserStyled>
   );

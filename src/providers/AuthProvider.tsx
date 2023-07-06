@@ -9,6 +9,8 @@ import { TLoginData } from "../pages/Login/validator";
 import { api } from "../service";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../context/context";
+import { TForgetData, TForgetDataToken } from "../schema/schema";
+import { string } from "zod";
 
 interface User {
   id: string;
@@ -31,6 +33,9 @@ interface AuthContextValues {
   login: boolean;
   messageError: boolean;
   user: User;
+  forgetPassword: (formData: TForgetData) => Promise<void>;
+  forgetPasswordToken: (formData: TForgetDataToken) => Promise<void>;
+  setTokenPassword: (token: string) => void;
 }
 
 export const AuthContext = createContext<AuthContextValues>(
@@ -41,6 +46,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
+  const [tokenPassword, setTokenPassword] = useState<string>("");
   const [login, setLogin] = useState<boolean>(false);
   const [messageError, setMessageError] = useState<boolean>(false);
   const { dataUser }: any = useContext(Context);
@@ -71,36 +77,65 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setMessageError(true);
     }
   };
+  async function forgetPassword(formData: TForgetData) {
+    try {
+      await api.post("/users/resetPassword", formData);
 
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async function forgetPasswordToken(formData: TForgetDataToken) {
+    try {
+      await api.post(`/users/resetPassword${tokenPassword}`, formData);
+
+      setTimeout(() => {
+        navigate("/");
+      }, 5000);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  const loadUser = async () => {
+    const token: string | null = localStorage.getItem("@Token");
+
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const responseUser = await api.get("/users/unique/users", {
+        headers: { authorization: `Bearer ${token}` },
+      });
+      const user: User = responseUser.data;
+      setUser(user);
+      setLogin(true);
+    } catch (err) {
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
-    const loadUser = async () => {
-      const token: string | null = localStorage.getItem("@Token");
-
-      if (!token) {
-        setLoading(false);
-        return;
-      }
-
-      try {
-        const responseUser = await api.get("/users/unique/users", {
-          headers: { authorization: `Bearer ${token}` },
-        });
-        const user: User = responseUser.data;
-        setUser(user);
-        setLogin(true)
-        
-      } catch (err) {
-        return null;
-      } finally {
-        setLoading(false);
-      }
-    };
-
     loadUser();
   }, [messageError, dataUser]);
 
   return (
-    <AuthContext.Provider value={{ singIn, login, messageError, user }}>
+    <AuthContext.Provider
+      value={{
+        singIn,
+        login,
+        messageError,
+        user,
+        forgetPassword,
+        forgetPasswordToken,
+        setTokenPassword,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -10,10 +10,12 @@ export const Context = createContext({});
 //Função que vai englobar nosso contexto
 export const Provider = ({ children }: any) => {
   const [modalRegisterPage, setModalRegisterPage] = useState(false);
-  const [modalForgetPassword, setModalForgetPassword] = useState(false);
   const [modalEditProfileState, setModalEditProfileState] = useState(false);
   const [modalEditAddressState, setModalEditAddressState] = useState(false);
-  const [modalHeaderState, setModalHeaderState] = useState(false);
+  const [modalEditAnnouncement, setModalEditAnnouncement] = useState(false);
+  const [modalDeleteAnnouncement, setModalDeleteAnnouncement] = useState(false);
+  const [idCar, setIdCar] = useState<number | undefined>(undefined);
+
   const [dataUser, setDataUser] = useState({});
 
   const navigate = useNavigate();
@@ -76,17 +78,6 @@ export const Provider = ({ children }: any) => {
       console.error(error);
     }
   }
-  async function forgetPassword(formData: iRegisterData) {
-    try {
-      await api.post("/users/resetPassword", formData);
-
-      setTimeout(() => {
-        setModalForgetPassword(false);
-      }, 5000);
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   return (
     <Context.Provider
@@ -96,17 +87,16 @@ export const Provider = ({ children }: any) => {
         userRegister,
         modalRegisterPage,
         setModalRegisterPage,
-        modalForgetPassword,
-        setModalForgetPassword,
-        forgetPassword,
         modalEditProfileState,
         setModalEditProfileState,
         modalEditAddressState,
         setModalEditAddressState,
+        modalEditAnnouncement,
+        setModalEditAnnouncement,
+        modalDeleteAnnouncement,
+        setModalDeleteAnnouncement,
         dataUser,
         setDataUser,
-        modalHeaderState,
-        setModalHeaderState,
       }}
     >
       {children}

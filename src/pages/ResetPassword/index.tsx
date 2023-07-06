@@ -1,16 +1,14 @@
-import { useContext } from "react";
 import * as S from "./style";
-import { Context } from "../../context/context";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { forgetPasswordSchema } from "../../schema/schema";
+import { useAuth } from "../../hooks/useAuth";
 
 export interface iForgetPasswordData {
   email: string;
 }
-
-export const ModalForgetPassword = () => {
-  const { setModalForgetPassword, forgetPassword }: any = useContext(Context);
+export const SendEmailResetPassword = () => {
+  const { forgetPassword } = useAuth();
 
   const {
     register,
@@ -22,26 +20,13 @@ export const ModalForgetPassword = () => {
   });
   function submit(formData: iForgetPasswordData) {
     forgetPassword(formData);
-    // setModalForgetPassword(false);
     reset();
   }
-
-  const closeModal = () => {
-    setModalForgetPassword(false);
-  };
   return (
-    <S.DivModal>
+    <S.DivResetPassword>
       <div className="divGlobal">
         <div className="divHeader">
           <h3>Redefinir senha</h3>
-          <button
-            id="ButClose"
-            onClick={() => {
-              closeModal();
-            }}
-          >
-            x
-          </button>
         </div>
         <div className="divForm">
           <form onSubmit={handleSubmit(submit)}>
@@ -58,6 +43,6 @@ export const ModalForgetPassword = () => {
           </form>
         </div>
       </div>
-    </S.DivModal>
+    </S.DivResetPassword>
   );
 };
