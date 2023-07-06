@@ -1,15 +1,15 @@
-import { z } from "zod";
+import * as yup from "yup";
 
-export const schemaEditAnnouncement = z.object({
-  brand: z.string().optional(),
-  model: z.string().optional(),
-  year: z.string().optional(),
-  fuel: z.string().optional(),
-  km: z.string().optional(),
-  color: z.string().optional(),
-  fipePrice: z.string().optional(),
-  price: z.string().optional(),
-  description: z.string().optional(),
-  image: z.string().optional(),
+export const schemaEditAnnouncement = yup.object({
+  brand: yup.string().optional(),
+  model: yup.string().optional(),
+  year: yup.string().optional(),
+  fuel: yup.string().optional(),
+  km: yup.string().optional(),
+  color: yup.string().optional(),
+  fipePrice: yup.string().optional(),
+  price: yup.string().optional(),
+  description: yup.string().optional(),
+  image: yup.string().optional(),
 });
-export type EditAnnouncementData = z.infer<typeof schemaEditAnnouncement>;
+export type EditAnnouncementData = yup.InferType<typeof schemaEditAnnouncement>;
