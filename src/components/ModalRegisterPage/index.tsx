@@ -13,6 +13,7 @@ export const ModalPageRegister = () => {
   };
 
   const navigateLogin = () => {
+    setModalRegisterPage(false);
     navigate("/login");
   };
   return (
