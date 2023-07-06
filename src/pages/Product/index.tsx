@@ -6,13 +6,14 @@ import { useAnnouncementPage } from "../../hooks/useAnnouncementPage"
 import { useEffect } from "react"
 import { SectionComments } from "../../components/SectionComments"
 import { useAuth } from "../../hooks/useAuth"
+import { ModalComment } from "../../components/ModalComment"
 
 
 
 
 const ProductPage = () => {
 
-    const {carAnnouncement, setAnnouncementId} = useAnnouncementPage()
+    const {carAnnouncement, setAnnouncementId, modalComment} = useAnnouncementPage()
     const {login} = useAuth()
 
     const typeHeader = () => {
@@ -119,7 +120,12 @@ const ProductPage = () => {
                     </section>
                     <SectionComments/>
                 </div>
-               <Footer/> 
+               <Footer/>
+               {modalComment ? (
+                    <ModalComment/>
+               ):(
+                null
+               )} 
             </MainStyled>
         </>
     )

@@ -21,7 +21,11 @@ interface AnnouncementPageContextValues {
     comments: Comment[],
     setAnnouncementId: React.Dispatch<React.SetStateAction<string | undefined>>,
     messageNoComments: boolean,
-    toComment: (data: CreateCommentData) => void
+    toComment: (data: CreateCommentData) => void,
+    openModalComment: (type: string, id: string) => void,
+    modalComment: boolean,
+    isEdit: boolean,
+    closeModal: () => void
 }
 
 export const AnnouncementPageContext = createContext<AnnouncementPageContextValues>({} as AnnouncementPageContextValues)
@@ -34,6 +38,9 @@ export const AnnouncementPageProvider = ({children}: AnnouncementPageProviderPro
     const [carAnnouncement, setCarAnnouncement] = useState<Car>({} as Car)
     const [comments, setComments] = useState<Comment[]>([])
     const [messageNoComments, setMessageNoComments] = useState<boolean>(false)
+    const [commentId, setCommentId] = useState<string>("")
+    const [modalComment, setModalComment] = useState<boolean>(false)
+    const [isEdit, setIsEdit] = useState<boolean>(false)
     
     const goAnnouncementPage = (id: string) => {
         setAnnouncementId(id)
@@ -54,6 +61,21 @@ export const AnnouncementPageProvider = ({children}: AnnouncementPageProviderPro
                 console.log(err)
             }
         }
+    }
+
+    const openModalComment = (type: string, id:string) => {
+        if(type === "edit"){
+            setIsEdit(true)
+        }else{
+            setIsEdit(false)
+        }
+        setModalComment(true)
+        setCommentId(id)
+    }
+
+    const closeModal = () => {
+        setIsEdit(false)
+        setModalComment(false)
     }
 
     useEffect(() => {
@@ -112,7 +134,7 @@ export const AnnouncementPageProvider = ({children}: AnnouncementPageProviderPro
     }, [announcementId])
 
     return (
-        <AnnouncementPageContext.Provider value={{goAnnouncementPage, carAnnouncement, comments, setAnnouncementId, messageNoComments, toComment}}>
+        <AnnouncementPageContext.Provider value={{goAnnouncementPage, carAnnouncement, comments, setAnnouncementId, messageNoComments, toComment, openModalComment, modalComment, isEdit, closeModal}}>
             {children}
         </AnnouncementPageContext.Provider>
     )
