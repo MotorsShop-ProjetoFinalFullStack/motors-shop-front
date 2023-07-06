@@ -2,13 +2,33 @@ import styled from "styled-components"
 
 export const CardCommentStyled = styled.li`
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    justify-content: space-between;
+
+    .divContent{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
 
     .divHead {
         display: flex;
         align-items: center;
         gap: 20px;    
+    }
+
+    .divButtons{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .divButtons button{
+        background-color: var(--gray-10);
+        border: transparent;
+    }
+
+    .divButtons img{
+        width: 20px;
     }
 
     .commentLetter {
