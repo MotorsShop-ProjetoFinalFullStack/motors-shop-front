@@ -9,6 +9,7 @@ export const HeaderStyled = styled.div`
   background-color: var(--gray-9);
   border-bottom: 2px solid var(--gray-6);
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 10px 25px;
   .flex {
     display: flex;
     align-items: baseline;
@@ -33,6 +34,7 @@ export const HeaderStyled = styled.div`
   .div-button {
     border-left: solid var(--gray-6) 2px;
     padding: 12px 0px;
+    display: flex;
   }
 
   .button-login {
@@ -42,6 +44,7 @@ export const HeaderStyled = styled.div`
     font-weight: 700;
     margin-left: 20px;
     font-size: 16px;
+    width: max-content;
   }
 
   .button-register {
@@ -69,6 +72,74 @@ export const HeaderStyled = styled.div`
     margin: 0px 6px 0px 20px;
   }
 
+  .space {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
+  .burger-menu {
+    height: 100%;
+    width: 4em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    cursor: pointer;
+    align-items: flex-end;
+  }
+
+  .burger-bar {
+    width: 20px;
+    height: 3px;
+    background-color: var(--gray-1);
+    border-radius: 0.5em;
+  }
+
+  .menu {
+    width: 50%;
+    height: 100vh;
+    background-color: rgb(154, 181, 240);
+    position: absolute;
+    top: 0;
+    z-index: -1;
+  }
+
+  /* ------------- sliding menu ------------------ */
+  .hidden {
+    display: none;
+  }
+
+  .visible {
+    display: inherit;
+  }
+
+  /* ----- animations--------- */
+  /* clicked */
+  .burger-bar.clicked:nth-child(1) {
+    transform: rotate(45deg) translate(8px, -1px);
+    transition: ease-out 0.5s;
+  }
+
+  .burger-bar.clicked:nth-child(2) {
+    transform: scale(0);
+    transition: ease-out 0.5s;
+  }
+
+  .burger-bar.clicked:nth-child(3) {
+    transform: rotate(135deg) translate(-5px, -3px);
+    transition: ease-out 0.5s;
+  }
+
+  /* unclicked */
+  .burger-bar.unclicked {
+    transform: rotate(0) translate(0);
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+    margin-bottom: 2px;
+    align-items: flex-end;
+  }
+
   @media (min-width: 370px) {
     h1 {
       font-size: 35px;
@@ -76,6 +147,21 @@ export const HeaderStyled = styled.div`
 
     h3 {
       font-size: 30px;
+    }
+  }
+
+  @media (min-width: 500px) {
+    .burger-bar.unclicked {
+      display: none;
+    }
+    .burger-menu {
+      display: none;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .div-button {
+      display: none;
     }
   }
 `;
