@@ -7,6 +7,8 @@ import { useAuth } from "../../hooks/useAuth";
 export const ModalHeader = ({ type }: { type: string }) => {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { setModalEditProfileState }: any = useContext(Context);
+
   if (type == "buttons") {
     return (
       <ModalHeaderStyled>
@@ -31,9 +33,23 @@ export const ModalHeader = ({ type }: { type: string }) => {
   } else if (type == "dashboard") {
     return (
       <ModalHeaderStyled>
-        <div className="div-dashboard">
-          <div className="img"></div>
-          <h4>{user.name}</h4>
+        <div className="div-dashboard-modal">
+          <div>
+            <div
+              className="img"
+              onClick={() => setModalEditProfileState(true)}
+            ></div>
+            <h4>{user.name}</h4>
+          </div>
+          <button
+            className="logout"
+            onClick={() => {
+              localStorage.clear();
+              navigate("/login");
+            }}
+          >
+            Logout
+          </button>
         </div>
       </ModalHeaderStyled>
     );

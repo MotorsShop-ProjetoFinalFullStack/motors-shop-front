@@ -7,7 +7,11 @@ import { Context } from "../../context/context";
 
 export const Header = ({ type }: any) => {
   const navigate = useNavigate();
-  const { modalHeaderState, setModalHeaderState }: any = useContext(Context);
+  const {
+    modalHeaderState,
+    setModalHeaderState,
+    setModalEditProfileState,
+  }: any = useContext(Context);
 
   const { user } = useAuth();
   const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
@@ -86,8 +90,20 @@ export const Header = ({ type }: any) => {
       {type == "dashboard" && (
         <div>
           <div className="div-dashboard">
-            <div className="img"></div>
+            <div
+              className="img"
+              onClick={() => setModalEditProfileState(true)}
+            ></div>
             <h4>{user.name}</h4>
+            <button
+              className="logout-button"
+              onClick={() => {
+                localStorage.clear();
+                navigate("/login");
+              }}
+            >
+              Logout
+            </button>
           </div>
           {modalHeaderState && <ModalHeader type="dashboard" />}
         </div>

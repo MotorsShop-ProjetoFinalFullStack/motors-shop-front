@@ -10,6 +10,7 @@ export const ModalEditAddressStyled = styled.div`
   align-items: center;
   top: 0;
   font-weight: 500;
+  z-index: 1;
 
   .white {
     margin-top: 40px;

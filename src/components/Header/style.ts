@@ -64,12 +64,33 @@ export const HeaderStyled = styled.div`
     align-items: center;
   }
 
+  .div-dashboard-modal {
+    border-left: solid var(--gray-6) 2px;
+    padding: 12px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 20px;
+
+    div {
+      display: flex;
+      align-items: center;
+    }
+  }
   .img {
     background: black;
     border-radius: 34px;
     width: 27px;
     height: 27px;
-    margin: 0px 6px 0px 20px;
+    margin: 0px 6px 0px 5px;
+  }
+
+  .logout-button {
+    background: none;
+    border: 3px solid var(--azul-2);
+    border-radius: 6px;
+    margin-left: 10px;
   }
 
   .space {
@@ -161,6 +182,9 @@ export const HeaderStyled = styled.div`
 
   @media (max-width: 500px) {
     .div-button {
+      display: none;
+    }
+    .div-dashboard {
       display: none;
     }
   }

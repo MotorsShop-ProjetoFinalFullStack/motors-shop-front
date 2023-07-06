@@ -80,7 +80,7 @@ export const Provider = ({ children }: any) => {
       console.error(error);
     }
   }
-
+  console.log(dataUser);
   return (
     <Context.Provider
       value={{
