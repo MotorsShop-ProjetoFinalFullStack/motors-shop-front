@@ -134,6 +134,11 @@ export const MainStyled = styled.main`
             align-self: self-start;
         }
 
+        button:hover{
+            background-color: var(--gray-1);
+            color: var(--gray-8);
+        }
+
 
     }
 
@@ -232,6 +237,10 @@ export const MainStyled = styled.main`
             border: none;
             border-radius: 4px;
             cursor: pointer;
+        }
+
+        button:hover{
+            background-color: var(--gray-3);
         }
     }
 
