@@ -79,8 +79,6 @@ export const Provider = ({ children }: any) => {
     }
   }
 
-  
-
   return (
     <Context.Provider
       value={{
