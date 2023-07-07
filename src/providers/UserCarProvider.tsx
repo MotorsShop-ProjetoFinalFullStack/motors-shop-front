@@ -112,6 +112,7 @@ export const UserCarProvider = ({ children }: UserCarProviderProps) => {
       });
 
       setModalSuccess(true);
+      window.location.reload()
     } catch (err) {
       setCreateAdvertiserError(true);
     }
@@ -229,6 +230,7 @@ export const UserCarProvider = ({ children }: UserCarProviderProps) => {
       setTimeout(() => {
         setModalEditAnnouncement(false);
       }, 500);
+      window.location.reload()
     } catch (error) {
       console.error(error);
     }
