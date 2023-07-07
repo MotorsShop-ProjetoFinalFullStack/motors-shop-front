@@ -17,6 +17,7 @@ export const ModalCreateAdvertiser = () => {
     const closeModalSuccess = () => {
         setModalCreateAdvertiser(false)
         setModalSuccess(false)
+        window.location.reload()
     }
 
     const closeModalSettings = () => {
