@@ -15,11 +15,7 @@ Use o seguinte comando para instalar as dependências:
 npm install
 ```
 
-### 2.2. Preencha o .env.example
-
-Faça uma cópia do arquivo .env.example, renomeie-o para .env e preencha os campos com as informações necessárias.
-
-### 2.3. Execute a aplicação
+### 2.2. Execute a aplicação
 
 ```shell
 npm run dev
