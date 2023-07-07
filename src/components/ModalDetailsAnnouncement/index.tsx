@@ -49,8 +49,9 @@ export const ModalDetailsAnnouncement = () => {
                         <p><span>Ano:</span> {getYear(car.year)}</p>
                         <p><span>Cor:</span> {car.color}</p>
                         <p><span>Combustível:</span> {car.fuel}</p>
-                        <p><span>Preço:</span> R${car.price}</p>
-                        <p><span>Tabela FIPE:</span> R${car.fipePrice}</p>
+                        <p><span>Quilometragem:</span> {car.km} km</p>
+                        <p><span>Preço:</span> R$ {car.price}</p>
+                        <p><span>Tabela FIPE:</span> R$ {car.fipePrice}</p>
                     </div>
                 </div>
                 <div className="description">
