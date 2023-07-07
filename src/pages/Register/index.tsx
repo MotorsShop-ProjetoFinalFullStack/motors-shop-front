@@ -49,7 +49,7 @@ export const RegisterPage = () => {
   }, [accountType, register]);
 
   function submit(formData: iRegisterData) {
-    console.log(formData);
+    // console.log(formData);
     formData.typeUser = accountType;
 
     const address: any = {
@@ -73,7 +73,6 @@ export const RegisterPage = () => {
     };
     delete formData.confirmed_password;
     userRegister(user);
-    setModalRegisterPage(true);
     reset();
   }
 

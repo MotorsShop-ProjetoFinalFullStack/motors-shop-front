@@ -72,6 +72,7 @@ export const Provider = ({ children }: any) => {
   async function userRegister(formData: iRegisterData) {
     try {
       await api.post("/users", formData);
+      setModalRegisterPage(true);
 
       setTimeout(() => {
         setModalRegisterPage(false);
