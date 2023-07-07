@@ -35,6 +35,7 @@ interface AuthContextValues {
   forgetPassword: (formData: TForgetData) => Promise<void>;
   forgetPasswordToken: (formData: object) => Promise<void>;
   setTokenPassword: (token: string) => void;
+  logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextValues>(
@@ -120,6 +121,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setLoading(false);
     }
   };
+  const logout = () => {
+    localStorage.clear()
+    setLogin(false)
+    navigate("/login")
+  }
   useEffect(() => {
     loadUser();
   }, [messageError, dataUser]);
@@ -134,6 +140,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         forgetPassword,
         forgetPasswordToken,
         setTokenPassword,
+        logout
       }}
     >
       {children}

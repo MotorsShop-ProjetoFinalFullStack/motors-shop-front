@@ -14,7 +14,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { ModalEditAnnouncement } from "../../components/ModelEditAnnouncement";
 import { ModalDeleteAnnouncement } from "../../components/ModelaDeleteAnnouncement/Index";
 import { ModalDetailsAnnouncement } from "../../components/ModalDetailsAnnouncement";
+import { useAuth } from "../../hooks/useAuth";
+
 export const UserAdvertiser = () => {
+  const {
+    user
+  } = useAuth()
+
   const { 
     modalCreateAdvertiser, 
     modalDetail 
@@ -38,7 +44,11 @@ export const UserAdvertiser = () => {
     <UserAdvertiserStyled>
       <Header type={"dashboard"} />
       <UserAdvertiserSection isPublic={false} />
-      <ListUserCars />
+      {user.typeUser === "Anunciante" ? (
+        <ListUserCars />
+      ): (
+        null
+      )}
       <Footer />
       {modalCreateAdvertiser ? <ModalCreateAdvertiser /> : null}
       {modalEditProfileState && <ModalEditProfile />}
