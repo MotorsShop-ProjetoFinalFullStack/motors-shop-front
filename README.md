@@ -24,3 +24,6 @@ Faça uma cópia do arquivo .env.example, renomeie-o para .env e preencha os cam
 ```shell
 npm run dev
 ```
+
+## 3. Documentação Back-End
+https://motors-shop-projeto-final-m6.onrender.com/api-docs/
