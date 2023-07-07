@@ -13,7 +13,7 @@ export const Header = ({ type }: any) => {
     setModalEditProfileState,
   }: any = useContext(Context);
 
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
   const [menu_class, setMenuClass] = useState("menu hidden");
   const [isMenuClicked, setIsMenuClicked] = useState(false);
@@ -36,9 +36,9 @@ export const Header = ({ type }: any) => {
   return (
     <HeaderStyled>
       <div className="space">
-        <div className="flex">
+        <div className="flex" onClick={() => {navigate("/")}}>
           <h1>Motors</h1>
-          <h3>shop</h3>
+          <h3 className="secondLetterLogo">shop</h3>
         </div>
         <div className="burger-menu" onClick={updateMenu}>
           <div className={burger_class}></div>
@@ -94,12 +94,11 @@ export const Header = ({ type }: any) => {
               className="img"
               onClick={() => setModalEditProfileState(true)}
             ></div>
-            <h4>{user.name}</h4>
+            <h4 onClick={() => {navigate("/userAdvertiser")}}>{user.name}</h4>
             <button
               className="logout-button"
               onClick={() => {
-                localStorage.clear();
-                navigate("/login");
+                logout()
               }}
             >
               Logout

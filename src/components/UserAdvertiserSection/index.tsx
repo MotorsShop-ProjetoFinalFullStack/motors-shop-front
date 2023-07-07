@@ -54,13 +54,17 @@ export const UserAdvertiserSection = ({
             <p>{user.description}</p>
           </div>
           <div className="div-button">
-            <button
-              onClick={() => {
-                setModalCreateAdvertiser(true);
-              }}
-            >
-              Criar anúncio
-            </button>
+            {user.typeUser === "Anunciante" ? (
+              <button
+                onClick={() => {
+                  setModalCreateAdvertiser(true);
+                }}
+              >
+                Criar anúncio
+              </button>
+            ):(
+              null
+            )}
             <button onClick={() => setModalEditAddressState(true)}>
               Editar Endereço
             </button>

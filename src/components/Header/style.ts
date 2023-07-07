@@ -18,6 +18,7 @@ export const HeaderStyled = styled.div`
     -moz-background-clip: text;
     background-clip: text;
     color: transparent;
+    cursor: pointer;
   }
 
   h1 {
@@ -26,8 +27,8 @@ export const HeaderStyled = styled.div`
     margin-right: 8px;
   }
 
-  h3 {
-    font-size: 25px;
+  .secondLetterLogo {
+    font-size: 22px;
     font-weight: 600;
   }
 
@@ -59,7 +60,7 @@ export const HeaderStyled = styled.div`
 
   .div-dashboard {
     border-left: solid var(--gray-6) 2px;
-    padding: 12px 0px;
+    padding: 12px 0px 12px 15px;
     display: flex;
     align-items: center;
   }
@@ -78,6 +79,18 @@ export const HeaderStyled = styled.div`
       align-items: center;
     }
   }
+
+  h4{
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--gray-2);
+    cursor: pointer;
+  }
+
+  h4:hover{
+    color: var(--gray-1);
+  }
+
   .img {
     background: black;
     border-radius: 34px;
